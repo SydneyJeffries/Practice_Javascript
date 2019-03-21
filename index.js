@@ -295,3 +295,49 @@ for (let key in person)
         writeable: false;
     });
 
+///// prototype v. instant memebers
+
+function Circle (radius) {
+    this.radius = radius;
+    this.draw = function (){
+        console.log('draw')
+    }
+}
+const c1 = new Circle(1);
+const c2 = new Circle(2);
+
+// when we do this the draw method will be coppied to both versions created out of the circle prototype. However, we can remove the draw method from them
+// and still be able to acess the draw method from each child because the parent owns it . 
+// to do this, we need to remove this.draw from the constructor function.
+// when we remove it from the constructor function, we can add it  back to the parent object by          Circle.prototype.draw = function (){
+    //                                                                                                                    console.log('draw')
+ //                                                                                                                            }
+// Circle.prototype (references the prototype object of all objects created by the constructor function) and we add a method by .draw and  define it
+//....all this creates a single instance of the prototype method.
+// this works b/c of the way the js engine looks at the children, then looks at the parents to find the instance of the property or method.
+// we have two types of properties/ methods in JS: Instant members and prototype members
+
+
+function Circle (radius) {
+    // instant memebers
+    this.radius = radius;
+    
+}
+
+// prototype memeber
+Circle.prototype.draw = function (){
+    console.log('draw')
+}
+
+
+const c1 = new Circle(1);
+const c2 = new Circle(2);
+
+
+// instant memebers have acess to prototype memebers. prototype members have access to instant memebers.
+// prototype memeberrs are either defined outside of the constructor function (w/ dot notation syntax) or  defined inside the parent obj
+// instant memebers are more local, meaning the js engine looks at them first, so if the same member is defined in a prototype and an instant, but defined
+// differently, the definition of the instant member will be used...
+
+//////////iterating over instance and prototype memebers
+
