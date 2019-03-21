@@ -341,3 +341,70 @@ const c2 = new Circle(2);
 
 //////////iterating over instance and prototype memebers
 
+object.keys(c1));
+
+//^^ object.keys only returns instant memebers draw will not show up in the array, b/c draw is a prototype memeber.
+
+for (let key in c1)
+    console.log(key);
+
+//^^ the for in loop returns both prototype and instant memebers. 
+
+// instant memebers are also called own members. 
+
+/////////////////////// exercise 2
+
+function Timewatch () {
+    let startTime, endTime, running, durration = 0;
+    
+        this.reset = function() {
+    
+        }
+   
+        Object.defineProperties(Timewatch, "startTime","endTime" ,"running", "durration" {    /// <-  this is also a form of abstraction
+            writeable: false;
+        });
+
+
+       Object.defineProperty(this, 'duration', {
+           get: function() {
+               return duration
+           };
+           set: function(value){
+               durration = value;
+           });
+    
+    
+};
+
+    Timewatch.prototype.start = function (){
+        if (this.running)
+            throw new Error("stop watch is already running"); // running was undefined prior to running this method and chaning it' to true.
+       
+            this.running = true;
+       
+            this.startTime = new Date();
+    }
+
+    Timewatch.prototype.stop = function () {
+        if(!this.running) 
+            throw new Error('stopwatch is not started'); //you can not stop the watch when it's already stopped. when it's already stopped running will be false. 
+       
+            running = false;
+
+        this.endTime = new Date();
+
+        const seconds = (this.endTime.getTime() - this.startTime.getTime()) / 1000;
+        duration += seconds; 
+    };
+
+    Timewatch.prototype.reset = function() {
+        this.startTime = null;
+        this.endTime = null;
+        this.running = false;
+        this.durration = 0; 
+    }
+
+   
+
+    ///////////////////////////////////////section 3
