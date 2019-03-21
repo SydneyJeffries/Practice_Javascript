@@ -245,10 +245,10 @@ let startTime, endTime, running, durration = 0;
 
 
 
-}
+};
 
-////////////////////// SECTION 3 inheritance
-
+///////////////////////// SECTION 3 inheritance
+// inhertiance in object orriented programing is used to reduce redundant code. 
 /// inhertiance in typical obj or langos is described as a parent passing down information to a child. 
 ///javascript has prototypical relationships. a parent is now called a prototype. it's not complicated
 // when you acess a method or property on an object, JS engine first looks in that object directly for the property
@@ -259,3 +259,39 @@ let startTime, endTime, running, durration = 0;
 Object.getProtoTypeOf(x);
 
 // ^^ that's a way of checking the prototype of an object and viewing it's method and properties by typing that in console. 
+
+
+//////////
+
+// an array is also an reference object. all arrays belong to a single prototype that defeines the methods that arrays get to use, and 
+// that object is a child of the root object that all objects come from. 
+
+
+////////
+
+let person = {name: "mosh"};
+console.log(person);
+for (let key in person)
+    console.log(key);
+
+   // ^^ iterates over our keys but doesn't itierate over the parent's keys
+
+   let person = {name: "mosh"};
+   let objectbase = Object.get PrototypeoOf(person);
+   let descriptor = Object.getOwnPropertyDescriptor (objectBase, "toString");
+   console.log(descriptor);
+   
+   // when you look at the console and evaluate the property descriptor of the toString property that belongs to the root object,
+   // you will see a bunch of information that's set to be true/false that helps you evaluate that property
+    // configurable: true - means you can delete the member if you want to
+    // enumerable: false - means you can't iterate over this method and prevent's it from showing up when you call to see the keys
+    // writeable: true - means you can overwrite the value of this method
+    // ^^ these are the "Attributes" attached to the toString Method
+    // all of your object's propertys own these attributes and they are settable using: 
+
+    let person = {name: "mosh"};
+    object.defineProperty(person, "name", {
+        configurable: false;
+        writeable: false;
+    });
+
