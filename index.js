@@ -251,7 +251,9 @@ let startTime, endTime, running, durration = 0;
 
 /// inhertiance in typical obj or langos is described as a parent passing down information to a child. 
 ///javascript has prototypical relationships. a parent is now called a prototype. it's not complicated
-// prototypical inheritance
+// when you acess a method or property on an object, JS engine first looks in that object directly for the property
+// if the engine can't find the property in that object then it looks that the first prototype above that object, and 
+// if it can't find it it looks above that protoype and all the way to the root object untill it finds the property. 
 // in js, behind the scenes, every object in js belongs to a single prototype and they inherit all of the members from that single prototype.
 
 Object.getProtoTypeOf(x);
