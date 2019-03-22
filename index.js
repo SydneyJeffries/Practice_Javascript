@@ -522,3 +522,13 @@ function Timewatch () {
 
 ///polymorphism in object orriented programing gets rid of long if and switch cases. it can bass a method thro inheritance and allows that child object
 // to impliment that method in it's own way.
+// when we incapselate properties in objects, annd use inhertiance on methods we are able to use polymorphism techniques 
+// that allow child objects to impliment methods their own way and use For let loops on a method that belongs to the prototype,
+// and it impliments all of versions of the methods (the child versions), that we would otherwise have to use switch statements to 
+// do that. 
+
+///////////////when to use inheritance ///////
+
+
+///////mixin's achieve compisition which is favored over inheritance. //////////
+
