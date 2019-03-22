@@ -411,10 +411,11 @@ function Timewatch () {
 // we want circle and shape objects to inherit certian methods from the shape object. 
 
 
-    function Shape() {
+    function Shape(color) {
+        
     }
 
-    Shape.prototype.duplicate = function() {
+    Shape.prototype.duplicate = function() { // you do this so that every object created out of the shape constuctor will inherit this memebr. this is a prototype member. 
         console.log('duplicate')
     }
 
@@ -423,11 +424,51 @@ function Timewatch () {
         this. radius = radius
     }
 
-    circle.prototype = Object.create(shape.prototype); // we changed circle prototype to a new object that inherits from shape base. 
+    Circle.prototype = Object.create(shape.prototype); // we changed circle prototype to a new object that inherits from shape base. this means an object 
+    //created from the circle constructor will have acess to the circle object and it's parent; the shape object. (that's the relationship we formed here) 
+    Circle.prototype.constructor = Circle; // as best practices whenever you give an object a prototype you should also re-set the constructor to it's self, 
+    // just to avoid any hic-ups. 
 
-    circle.prototype.draw = function() {
+
+
+    Circle.prototype.draw = function() {
         console.log('draw')
     }
 
     const s = new shape();
     const c= new shape(); 
+
+
+
+
+    ///////////calling the super constructor ///
+
+    function Shape(color) {
+        this.color = color; 
+    }
+
+    Shape.prototype.duplicate = function() { 
+        console.log('duplicate')
+    }
+
+    function Circle(radius, color){ // add color to the arguments
+      
+        Shape.call(this, color);   //here we are calling the super constructor.
+        // call is a method that takes the object that will recieve the property, and the key name. 
+
+        this. radius = radius
+    }
+
+    Circle.prototype = Object.create(Shape.prototype); 
+    Circle.prototype.constructor = Circle; 
+
+
+    Circle.prototype.draw = function() {
+        console.log('draw')
+    }
+
+    const s = new shape();
+    const c= new circle(1, red); // 1. here we are creating a new instance of the circle object. we want to give it a value to the color property, 
+    // but the color property is owned by the shape object. so we will have to make changes to our shape constructor function. 
+    // this change is kown as "calling the super constructor ". the word super can symbolizes the parent. 
+    
