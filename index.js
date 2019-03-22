@@ -407,4 +407,27 @@ function Timewatch () {
 
    
 
-    ///////////////////////////////////////section 3
+    ///////////////////////////////////////section 3 prototpyical inheritance
+// we want circle and shape objects to inherit certian methods from the shape object. 
+
+
+    function Shape() {
+    }
+
+    Shape.prototype.duplicate = function() {
+        console.log('duplicate')
+    }
+
+    function Circle(radius){
+
+        this. radius = radius
+    }
+
+    circle.prototype = Object.create(shape.prototype); // we changed circle prototype to a new object that inherits from shape base. 
+
+    circle.prototype.draw = function() {
+        console.log('draw')
+    }
+
+    const s = new shape();
+    const c= new shape(); 
