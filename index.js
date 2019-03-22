@@ -472,3 +472,53 @@ function Timewatch () {
     // but the color property is owned by the shape object. so we will have to make changes to our shape constructor function. 
     // this change is kown as "calling the super constructor ". the word super can symbolizes the parent. 
     
+
+
+
+    //////////intermediate function inheritance //////
+
+    //here we are making a function that will be called and passed argugments every time we want to set an object's prototype to shape.
+    // 
+
+    function Shape(color) {
+        this.color = color; 
+    }
+
+    Shape.prototype.duplicate = function() { 
+        console.log('duplicate')
+    }
+
+    function Circle(radius, color){ 
+      
+        Shape.call(this, color);  
+
+        this. radius = radius
+    }
+
+    function extend(Child, Parent){                 //// here is our intermediate function inheritance. this way we can just pass arguments everytime we want to
+    Child.prototype = Parent.create(Parent.prototype);   // asign a new object as a child to what ever prototype we want. 
+    Child.prototype.constructor = Child;               /// its as good as a math equasion worth memorizing
+    }
+
+    Circle.prototype.draw = function() {
+        console.log('draw')
+    }
+
+    extend(Circle, Shape);   ///here we call the intermediate function and create inhertance relationships. 
+    extend(Square, Shape); //creating intermediate functions is for what's called "re-setting the prototypes"
+
+    const s = new shape();
+    const c= new circle(1, red); 
+
+
+
+
+    /////////////method override //////
+/// over ride a method that is defined in a base object - method over-riding. 
+
+
+
+/////////////////polymorphism///////
+
+///polymorphism in object orriented programing gets rid of long if and switch cases. it can bass a method thro inheritance and allows that child object
+// to impliment that method in it's own way.
