@@ -532,3 +532,22 @@ function Timewatch () {
 
 ///////mixin's achieve compisition which is favored over inheritance. //////////
 
+function HtmlElement () {
+    this.click = function (){
+        console.log("click");
+    }
+}
+
+HtmlElement.prototype.focus = function (){
+    console.log('focused');
+}
+
+
+function HtmlElementSelector () {
+    this.addItem = function() {
+    }
+    this.item = [];
+    this.removeItem = function(){
+        
+    }
+}
