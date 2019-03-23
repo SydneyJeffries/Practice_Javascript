@@ -544,10 +544,18 @@ HtmlElement.prototype.focus = function (){
 
 
 function HtmlElementSelector () {
-    this.addItem = function() {
-    }
     this.item = [];
-    this.removeItem = function(){
-        
+   
+    this.addItem = function(number) {
+        item.push(number)
+    }
+ 
+    this.removeItem = function(number){
+        item.pop(number)
     }
 }
+
+HtmlElementSelector.prototype = Object.create(HtmlElement.prototype.constructor); 
+    HtmlElementSelector.prototype.constructor = HtmlElementSelector; 
+
+  
