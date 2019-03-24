@@ -544,18 +544,18 @@ HtmlElement.prototype.focus = function (){
 
 
 function HtmlElementSelector () {
-    this.item = [];
+    this.item = item || []; //if items is defined, use that, otherwise we use this empty array. 
    
     this.addItem = function(number) {
-        item.push(number)
+       this.item.push(number);
     }
  
     this.removeItem = function(number){
-        item.pop(number)
+       this.item.pop(number);
     }
 }
 
-HtmlElementSelector.prototype = Object.create(HtmlElement.prototype.constructor); 
-    HtmlElementSelector.prototype.constructor = HtmlElementSelector; 
-
-  
+HtmlElementSelector.prototype = new HtmlElement(); // here we are setting the prototype of HTMLslector to the HTMLelement constructor
+// b.c the constructor has acess to the instant memebers...and the prototype memebers because that one will link to the prototype of htmlelement. 
+HtmlElementSelector.prototype.constuctor = HTMLSelectElement;
+// you have to reset the consturcor. 
