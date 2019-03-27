@@ -1,3 +1,5 @@
+///These are all docs from a class i took on Udmey with instructor Mosh Hamedani on Object orriented programing in Javascript. 
+
 console.log('hello world');
 const circle = {
 radius: 1,
@@ -557,10 +559,13 @@ function HtmlElementSelector () {
 
 HtmlElementSelector.prototype = new HtmlElement(); // here we are setting the prototype of HTMLslector to the HTMLelement constructor
 // b.c the constructor has acess to the instant memebers...and the prototype memebers because that one will link to the prototype of htmlelement. 
+//this is setting the element to "inherit from the instance" of the htmlElement. 
 HtmlElementSelector.prototype.constuctor = HTMLSelectElement;
 // you have to reset the consturcor. 
 
-/////////////////////////exercise 2 polymorphism. ///////
+
+
+////////////////////////////////exercise 2: polymorphism. ////////
 
 
 function HtmlElement () {
@@ -584,4 +589,26 @@ function HtmlElementSelector () {
     this.removeItem = function(number){
        this.item.pop(number);
     }
+
+    this.render = function(...) {
+    
+    }
 }
+
+function HTmlImgElement (src,) {
+
+    this.src = src ;
+
+
+}
+
+
+HtmlElementSelector.prototype = new HtmlElement(); // here we are setting the prototype of HTMLslector to the HTMLelement constructor
+// b.c the constructor has acess to the instant memebers...and the prototype memebers because that one will link to the prototype of htmlelement. 
+//this is setting the element to "inherit from the instance" of the htmlElement. 
+HtmlElementSelector.prototype.constuctor = HTMLSelectElement;
+// you have to reset the consturcor. 
+
+
+HtmlImgElement.prototype = new HtmlElement();
+HtmlImgElement.prototype.constuctor = HtmlImgElement;
