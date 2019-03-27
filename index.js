@@ -559,3 +559,29 @@ HtmlElementSelector.prototype = new HtmlElement(); // here we are setting the pr
 // b.c the constructor has acess to the instant memebers...and the prototype memebers because that one will link to the prototype of htmlelement. 
 HtmlElementSelector.prototype.constuctor = HTMLSelectElement;
 // you have to reset the consturcor. 
+
+/////////////////////////exercise 2 polymorphism. ///////
+
+
+function HtmlElement () {
+    this.click = function (){
+        console.log("click");
+    }
+}
+
+HtmlElement.prototype.focus = function (){
+    console.log('focused');
+}
+
+
+function HtmlElementSelector () {
+    this.item = item || []; //if items is defined, use that, otherwise we use this empty array. 
+   
+    this.addItem = function(number) {
+       this.item.push(number);
+    }
+ 
+    this.removeItem = function(number){
+       this.item.pop(number);
+    }
+}
