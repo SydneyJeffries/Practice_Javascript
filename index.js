@@ -598,7 +598,11 @@ function HtmlElementSelector () {
 function HTmlImgElement (src,) {
 
     this.src = src ;
+    
+    this.render = function(src){
+        return "<img src='" + this.src + "'/>"
 
+    }
 
 }
 
@@ -612,3 +616,23 @@ HtmlElementSelector.prototype.constuctor = HTMLSelectElement;
 
 HtmlImgElement.prototype = new HtmlElement();
 HtmlImgElement.prototype.constuctor = HtmlImgElement;
+
+const img = new HtmlImgElement();
+
+img.src = "http";
+
+const elements = [
+    new htmlSelectElement([1,2,3]),
+    new HtmlImgElement('https//'),
+];
+
+for (let element of elements)
+    console.log(element.render());
+
+    // the for...of statement creates a loop iterating over iterable objects, inlcuding: built in string, array, and array like objects
+
+    // typedArray, map, set, and user defined iterables. it invokes a custom iteration hook with satements to be executed 
+    // for the value of each distinct property of the object. 
+
+    //variable
+//On each iteration a value of a different property is assigned to variable. variable may be declared with const, let, or var.
