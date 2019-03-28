@@ -79,4 +79,49 @@ const Square = class {
 
 
 
+//////////////////////// Static Methods /////////////
+
+// in class object orriented programing languages there are what's called: INSTANT METHODS and STATIC METHODS
+// "Instant Methods" are methods are are aviabale in an "instant creation of the class. "
+//       previously, what we'eve learned from prototype obj orriented lanagues was reflected to be either a prototype memeber or an instant memeber. 
+//       encapsilation is grouping stuff with the correct object
+//      previously, if we wanted to encapsilate a memeber we would create an expression in an object. (an expression is setting equal to a varriable)
+//      previosuly, or we could encapsislate a memeber by setting the property's attributes with  the master object's defineProperty method: 
+//   let person = {name: "mosh"};
+   // object.defineProperty(person, "name", {
+   //     configurable: false;
+  //      writeable: false;
+  //      enumerable: false
+ //   });
+
+ //      or we'd  practice encapsilation and inheritance together by setting certain memebers to the instant and certain memebers to the prototype. 
+
+
+// class object orriented programing uses what's called static methods.
+// the static methods are not aviabale in an instant creation of the class.we use static methods as as utility methods that we don't want tied to any particular object.
+// in order to use the static method we'd have to call and use the class object that the satic method resides in. 
+
+Class Circle {
+    constructor(radius){
+        this.radius = radius; 
+    }
+
+
+    // instance memeber
+    draw() { } // also in prototype obj or we'd call this a prototype memeber instead of an instant memeber
+
+    
+    // static method
+    static parseFloat(str) {  // this is our encapsilated memeber that we want to be only accessable when calling the Circle Class. 
+
+    }
+
+
+    }
+
+
+}
+
+
+
 
