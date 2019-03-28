@@ -1,7 +1,7 @@
 /////This is a doc from a class I took on Udmey with instructor Mosh Hamedani on Object orriented programing in Javascript. 
 
 
-//////////////section 5 es6 classes ////////////
+///////////////////section 5 ES6 classes ///////////////
 
 ///es6 classes create a new way to create objects in JS. they are not classes like c# and java, they are just snytactic sugar to look more like class objects. 
 
@@ -32,3 +32,51 @@ class Circle {
 }
 
 const c = new Circle(1); // when we anaylize the c object in chrome, the move method will be apart of it and the draw method will be named in the prototype.
+
+//in chrome, typeof Circle will return as a function. classes are essentally constructor functions. 
+
+///es6 classes offer cleaner syntax for prototpyical inheritance. 
+
+
+///////////////////////// Hoisting //////////
+
+
+ ///THIS IS A FUNCTION DECLORATION... 
+function sayHello() { }  //in a function decloration we give it a name 
+
+
+// THIS IS A FUNCTION EXPRESSION... 
+const sayGoodbye = function ()  { };  //in a function expression we asign a nameless function to a varriable
+const number = 1; // this is an expression. Expressions are terminated with simicolons. 
+
+// the reason that function Expressions and Declorations should be distinguished in JS is because 
+//you can call on function decorations before they are declared. 
+//but, if you try to call on a function expression before it's declared you will get an error. 
+// function Declorations are considered "hoisted" in the code. 
+// "hoisted" meaning they are "hoisted at the top" of the code whenever the engine reads. this means that they 
+// will read the function Declorations first. 
+//the Function Expressions are not "hoisted" and they stay in the same spot in the code as the place that you wrote them.
+//like wise, the number varriable is considered an expression. if i tried to call on the number varriable before i named it, it would return an error. 
+
+// you can create an ES6 class by expression or decloration
+//however, unlike function declorations that get hoisted, class declorations do not get hoisted. 
+
+//THIS IS A CLASS DECLORATION....
+class Circle {
+
+}
+
+//THIS IS A CLASS EXPRESSION...
+const Square = class {
+
+
+}
+
+// you can create an ES6 class by expression or decloration
+//however, unlike function declorations that get hoisted, class declorations do not get hoisted. 
+// so the differences between expressions and syntaxes are non-existance other than the snytax used 
+// *the author recomends using the decloration syntax for classes at all times 
+
+
+
+

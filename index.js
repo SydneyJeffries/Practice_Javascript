@@ -74,7 +74,7 @@ anther.constructor
 
 
 
-//value types vrs. reference types
+//VALUE TYPES vrs. REFERENCE TYPES
 //value types are numbers, strings, booleans, symbol, undefined, null
 //reference types are objects, functions and arrays. 
 // in JS arrays are also objects
@@ -125,8 +125,8 @@ console.log(obj); // the value will return as 11
 
 // ^^this is because when an object's values change any reference to that object's value also imediately changes. ( because of teh whole refrence to reference thing)
 
-//premitives are copied by their value
-//objects are coppied by their reference 
+//PREMATIVES ARE COPPIED BY THEIR VALUE
+//OBJECTS ARE COPPIED BY THEIR REFERENCE
 
 
 function Circle(radius){
