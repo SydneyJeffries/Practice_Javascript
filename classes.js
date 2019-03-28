@@ -91,12 +91,21 @@ const Square = class {
    // object.defineProperty(person, "name", {
    //     configurable: false;
   //      writeable: false;
-  //      enumerable: false
+  //      enumerable: false;
  //   });
 
  //      or we'd  practice encapsilation and inheritance together by setting certain memebers to the instant and certain memebers to the prototype. 
-
-
+//       previously we could also use get and set as a form of abstraction by using the master object's defineproperty method:
+//  
+    //    Object.defineProperty(this, 'duration', {
+   //      get: function() {
+ //           return duration
+  //     };
+ //          set: function(value){
+  //          durration = value;
+  //    });
+//
+//
 // class object orriented programing uses what's called static methods.
 // the static methods are not aviabale in an instant creation of the class.we use static methods as as utility methods that we don't want tied to any particular object.
 // in order to use the static method we'd have to call and use the class object that the satic method resides in. 
@@ -124,4 +133,43 @@ Class Circle {
 
 
 
+/////////////////// Private members using symbols ////////
 
+
+//abstraction means hiding the details and complexity and showing only the necessary parts
+// think of the buttons you see on the dvd player. that's all you see, the parts you can interact with, and the rest is behind the hood.
+// (I was previously refering to abstraction as encapslation on this page when we were taking about static methods...
+// ...  now i realise encapslation and abstraction are happening simutaniously and abstraction was the 
+// concept that was at play.)
+
+//how to impliment private properties and methods when using ES6 classes: 
+// there are 2 approaches to implimenting private properties and methods with ES6 classes : using es6 symbols and es6 maps  
+
+///////////using ES6 symbols for abstraction//////
+
+// in js there are 2 ways to acess properties in an object : dot notation or brackets... as demonstarated the following two lines are exactly the same
+//  this.radius = radius 
+// this['radius'] = radius
+
+//in es6 symbols are are new primative data type. ( prematives are booleans, numbers and strings)
+// previously i've thought of abstraction as ; hiding properties and methods of an object from other coders so they can't over wright their values --creating privet properties
+ // but here we expand on the purpose of abstraction as having the purpose of hiding the details and complexity and only showing the neccesary parts
+// using es6 symbols for abstraction reminds me of encription because with encription you are using symbols to symbolize other words 
+// and with es6 symbols you are symbolizing things with other words for the purpose of making your class object's code looking neater and simpler.
+// when we check our object on chrome by typing it into the console, the symbolized character will be gone and it will show the real meaning behind the symbol. 
+
+
+const _radius = symbol();  // here we create the symbol. NOTE: the _ sytax 
+const _draw = symbol();
+
+class Circle {
+    constructor(radius) {
+        this[_radius] = radius;     //using a symbol to name a property
+    }
+
+    [_draw]() {                 /// using a symbol to name a method
+
+    }
+}
+
+const c = new Circle(1);
