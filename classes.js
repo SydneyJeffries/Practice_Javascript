@@ -121,7 +121,8 @@ Class Circle {
 
     
     // static method
-    static parseFloat(str) {  // this is our encapsilated memeber that we want to be only accessable when calling the Circle Class. 
+    static parseFloat(str) {  // this is our abstracted memeber that we want to be only accessable when calling the Circle Class. 
+                                /// it becomes similar to a prototyped method (only static method is what we call for class obj orr prog)
 
     }
 
@@ -133,7 +134,7 @@ Class Circle {
 
 
 
-/////////////////// Private members using symbols ////////
+///////////////////// Private members in es6 ////////
 
 
 //abstraction means hiding the details and complexity and showing only the necessary parts
@@ -159,7 +160,7 @@ Class Circle {
 // when we check our object on chrome by typing it into the console, the symbolized character will be gone and it will show the real meaning behind the symbol. 
 
 
-const _radius = symbol();  // here we create the symbol. NOTE: the _ sytax 
+const _radius = symbol();  // here we create the symbols by expressions. NOTE: the _ sytax 
 const _draw = symbol();
 
 class Circle {
@@ -170,6 +171,43 @@ class Circle {
     [_draw]() {                 /// using a symbol to name a method
 
     }
+}
+
+const c = new Circle(1);
+
+
+/////////////////// using weak weekmaps in es6 to impliment privet properties and methods in an object//////
+// symbols "kind-of" made properties "privet", but weakmaps will hide the properties from being seen when inspecting an instance of an object,
+// and prevent the properties from being writen over acidently 
+//  you IMPLIMENT THE WEAKMAP in the object WITH THE GET AND SET METHODS 
+// and to obtain future acess to those privet properties, we make methods in our objects whose only purpose is to use the get method
+// the get method retrieves the value of the property we created with the Weakmap();.
+
+const _radius = new WeakMap(); 
+const _move = new WeakMap();
+
+
+class Circle {
+
+    constructor (radius){
+     _radius.set(this, radius);
+
+     _move.set(this, ()=> {
+        console.log('move', this) // here, this will refer to to the circle object as long as you use an arrow function 
+     } )
+    
+    }
+
+    draw() {
+       _move.get(this)();     /// we had to put the (); at the end because _move is a method and we want' that method to execute after we get it.                         
+
+    }
+
+    getRadius() {
+         _radius.get(this);    
+
+    }
+
 }
 
 const c = new Circle(1);
