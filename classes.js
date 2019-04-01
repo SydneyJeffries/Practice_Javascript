@@ -279,7 +279,7 @@ const _radius = new WeakMap();
 
 
 
- ////////////////////////Super Constructors and implimenting inheritance in es6//////////
+ /////////////////////////////Super Constructors and implimenting inheritance in es6 //////////
 // if you want to create a child class in es6 you need the extends keyword and the super(); method. 
 // all you have to do is when you want the class to be a child you write 
 // extends then the parent while creating the child class. 
@@ -290,7 +290,7 @@ const _radius = new WeakMap();
 /// in ES6 the super constructor is a method: super(); and you pass in the place holder parameter used in the parent class.
 
 
- class Shape {   // "base class" aka parent
+ class Shape {                           // "base class" aka parent
       Constructor(color, size) {
         this.color = color;
         this.size = size;
@@ -301,14 +301,14 @@ const _radius = new WeakMap();
 
  }
 
- class Circle extends Shape {  //"derived class" aka child
+ class Circle extends Shape {             //"derived class" aka child created using the extends keyword
     constructor(color) {
-        super(color, size);       //// This is the super constructor being used. 
+        super(color, size);             //// This is the super constructor being used. 
         this.radius = radius;
     }
 
     draw() {
-        console.log('draw');  // any method you declare outside of the constructor will be apart of the prototype memebers. 
+        console.log('draw');             // any method you declare outside of the constructor will be apart of the prototype memebers. 
     }
  }
 
@@ -316,4 +316,48 @@ const _radius = new WeakMap();
  // parent class ..
 
 
- ///
+
+ ///////////////////////////////// Method OverRiding ////////////
+// method Overriding is apart of the obj or polymorphism concept.
+// polymorphism: you can pass a method thro inheritance and allow that child object to impliment that method it's own way. 
+// we can proform method overriding the child method by redefining what the method does inside the devrived class.
+// this works because when this method is called like c.move; JS engine looks at the child class to find that method first. 
+
+class Shape {
+
+    move() {
+        console.log('move');
+    }
+
+}
+
+class Circle extends Shape {
+    move () {                       // this is method overRidng
+    console.log('circle move');
+    }
+
+}
+const c = new Circle();
+
+
+////////using the super keyword://///
+////imagine if we want the child's move method to impliment what the parent's move method does AND it's own additional steps...
+// we would use the super keyword in the child's move method inorder to call the parent's move method and impliment everything the parent does..
+//
+
+class Shape {
+
+    move() {
+        console.log('move');
+    }
+
+}
+
+class Circle extends Shape {
+    move () {               
+    super.move();                   // the super keyword
+    console.log('circle move');
+    }
+
+}
+const c = new Circle();
