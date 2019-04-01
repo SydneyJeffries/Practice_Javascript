@@ -355,9 +355,19 @@ class Shape {
 
 class Circle extends Shape {
     move () {               
-    super.move();                   // the super keyword
+    super.move();                       // the super keyword used here takes the meaning of the devrived classes's  parent.  
     console.log('circle move');
     }
 
 }
 const c = new Circle();
+
+
+/////////////////////////////Exercise //////////////
+// a stack uses push to add and pop to remove.
+// pop from the top
+// the instance of the stack class  we create will have a count property. the count property will tell me how many objects are in the stack.
+// it's imediate prototype will be an object class
+// the prototype will have  3 methods: peek, pop and push
+// peek will return the object to the top of the stack but it does not remove it from the stack. it allows us to see what's on top of the stack.
+// we will get errors if we call pop and peek on empty stacks. 
