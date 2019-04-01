@@ -158,7 +158,7 @@ Class Circle {
 // using es6 symbols for abstraction reminds me of encription because with encription you are using symbols to symbolize other words 
 // and with es6 symbols you are symbolizing things with other words for the purpose of making your class object's code looking neater and simpler.
 // when we check our object on chrome by typing it into the console, the symbolized character will be gone and it will show the real meaning behind the symbol. 
-
+// symbols are used as keys in objects. 
 
 const _radius = symbol();  // here we create the symbols by expressions. NOTE: the _ sytax 
 const _draw = symbol();
@@ -182,6 +182,8 @@ const c = new Circle(1);
 //  you IMPLIMENT THE WEAKMAP in the object WITH THE GET AND SET METHODS 
 // and to obtain future acess to those privet properties, we make methods in our objects whose only purpose is to use the get method
 // the get method retrieves the value of the property we created with the Weakmap();.
+
+
 
 const _radius = new WeakMap(); 
 const _move = new WeakMap();
@@ -212,6 +214,17 @@ class Circle {
 
 const c = new Circle(1);
 
+
+
+
+
+
+
+
+
+
+
+
 ////////////////////// Getters and setters /////
 ///getters and setters are a form of abstraction: with a getter method you can grab the value of the property for read only.
 // you would then call the method to get a read on the value from your console. 
@@ -222,7 +235,7 @@ const c = new Circle(1);
   //  };
   ///// and this will give us a property we can read when we type the object name into our console and look at it's properties. 
 // with es6 there are two new ways to get and set: 1. we make methods in our objects whose only purpose is to use the get method and acess that read only property 
-// by calling thee get method. OR 2. use new es6 syntax with the get keyword and acess the value by calling on a property and NOT by calling a method. 
+// by calling thee get method. OR 2. use new es6 classes and new syntax with the get keyword and acess the value by calling on a property and NOT by calling a method. 
 //  
 
 //The SET method is powerful because we can thro vaildators with the set method. this way we can make sure that the value's are acceptable as deemed by the 
@@ -261,3 +274,10 @@ const _radius = new WeakMap();
  c.getRadius() ; // this returns 1 and is part of the first way to get values
  c.radius ; // this returns the same thing but is part of the 2nd way to get the value
  c. radius = -1 // this will return our 'invalid radius' error. 
+
+
+
+
+ ///////////////////implimenting inheritance in es6////
+
+ 
