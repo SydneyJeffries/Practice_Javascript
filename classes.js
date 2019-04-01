@@ -278,6 +278,45 @@ const _radius = new WeakMap();
 
 
 
- ///////////////////implimenting inheritance in es6////
 
- 
+ ////////////////////////Super Constructors and implimenting inheritance in es6//////////
+
+// you dont have to reset the prototype, you don't have to rest the consturctor. all you have to do is when you want the class to be a child you write 
+// extends then the parent while creating the child class. 
+//with the extends keyword you don't have to redefine the constructor. 
+// parent is the base class, child is the derived class. 
+// if your base class has a constructor and if you want to create a constuctor in the child class you have to create in the derived class a...
+//  Super Constructor first. 
+
+ class Shape {   // "base class" aka parent
+
+    Constructor(color) {
+        this.color = color;
+    }
+
+    move() {
+        console.log('move')
+    }
+
+
+ }
+
+ class Circle extends Shape {  //"derived class" aka child
+
+    constructor(color) {
+        super(color);       //// super constructor  
+        this.radius = radius;
+    }
+
+
+    draw() {
+        console.log('draw');  // any method you declare outside of the constructor will be apart of the prototype memebers. 
+    }
+
+
+ }
+
+ const c = new Circle('red', 1);
+
+
+ ///
