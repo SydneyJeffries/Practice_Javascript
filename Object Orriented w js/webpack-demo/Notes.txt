@@ -1,0 +1,37 @@
+/////////////// Web Pack ///////
+// to install webpack :
+//at the webpack-demo cd
+// npm i -g webpack-cli
+
+// at the webpack-demo cd type..
+// webpack-cli init
+// // it will ask a bunch of questions 
+// it will ask which module will be the first to enter the application and suggests ./src/index to be the first one... 
+// so we will create a fodler called src and move our javascript files into that folder...
+// answer that question with ./src/index
+// which folder will your generated bundles be in? (press enter for this question bc enter accepts the default)
+// will you be using es2015?  yes
+// ^^ this automaticly installs babel to transpile code , so we don't have to install all those babel packages we did from before
+// will you be using any of the css solutions? arrow key to your correct answer. 
+// once these questions are answered it will install and you will get a webpack.config.js file inside the directory. 
+
+// now we have to create a package.jason
+// from the terminal in the same project folder ...
+// npm init --yes
+// a package.jason file will be added to your project folder. 
+// from the script section of our package.jason we will add a new command...
+// "build": "webpack",
+
+//// how to bundle our application 
+/// we are going to  use the command that we created in the package.jason on the terminal 
+// from the project folder in the terminal...
+// npm run build 
+// when it's done executing there will be an added dist folder, inside the dist folder a js file
+// update the <script> element in index.html to new bundled js file.
+
+
+// make it to where webpack automaticly updates:
+// web pack will watch for updates and regenerate the bundle whenever we make changes. 
+/// go back to your package .jason
+// change build command to "webpack-w"
+// run the build command to get that started 
