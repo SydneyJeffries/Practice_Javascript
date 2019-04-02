@@ -31,7 +31,7 @@ constructor() {
     peek() { 
         const items = _ items.get(this);
 
-        if (_items.length === 0 )
+        if (items.length === 0 )
          throw new Error('this stack is empty');
 
         return items.[items.length - 1 ];
@@ -39,9 +39,11 @@ constructor() {
     }
 
     pop(){
-        if (_items.get(this).length === 0 )
+        const items = _ items.get(this);
+
+        if (items.get(this).length === 0 )
             throw new Error ('stack is empty')
-        return _items.get(this).pop()
+        return items.get(this).pop()
 
     }
 
