@@ -28,5 +28,33 @@ c.draw();
 
 // the author says from here on out our focus will be on common JS and es6 modules. 
 
-////////////////////////// Common JS Modules ////////////
 // common js mudles are used with Node.js
+
+//////////////////////////////es6 modules ////////
+//we create circle.js file
+
+//const _radius = new WeakMap();        //
+
+//class Circle {                          ///
+ //   constructor(radius) {                //
+ //       _radius.set(this, radius);        //
+ //   }
+//}                                           /// all of this is moved into the circle.js file. 
+ 
+//draw() {                                                        //
+  //  console.log('circle with radius' + _radius.get(this));               //
+
+//}                                                    //
+//}                                                      //
+ 
+
+
+
+//////// to use es6 modules; use the export keyword infront of the object in the circle.js file,
+/// then in this file you use the import keyword like so: 
+
+import {Circle} from './circle.js';                /// at index.html put a type attribute in the script element and label it "module" to avoid annoying...
+                                                    /// unexpected token error. 
+const c = new Circle(10);
+c.draw();
+

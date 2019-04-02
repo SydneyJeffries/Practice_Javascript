@@ -1,0 +1,16 @@
+////////////////////// ES6 modules ///////////////
+/////////////by default everything we create here is considered private  (abstracted) unless we use the export keyword 
+const _radius = new WeakMap();        
+
+export class Circle {                          
+    constructor(radius) {               
+        _radius.set(this, radius);        
+    }
+}                                           
+ 
+draw() {                                                        
+    console.log('circle with radius' + _radius.get(this));               
+
+}                                                    
+}                                                      
+ 
