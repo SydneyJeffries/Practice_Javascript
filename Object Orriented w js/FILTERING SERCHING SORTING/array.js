@@ -19,8 +19,20 @@
  // there are several ways to iterate over the items in an array such as using the Loops...
  // or these build in array methods. 
  forEach(); // a function for each element in the array gets executed. 
- map(); // map ccalls a function on each element in an array and creates a new array with results. 
  
+ 
+ map(); // map ccalls a function on emap() does not change the original array.
+ //map() does not change the original array.
+ //The map() method calls the provided function once for each element in an array, in order.
+ //the following will return a new array containing the square root of each element in the orginal array
+ let numbers = [4, 9, 16, 25];
+ let newNumbers= numbers.map(Math.sqrt);
+  console.log(newNumbers);
+ // returns (4) [2, 3, 4, 5]
+
+ 
+
+
  some(); //checks that some elements in an array pass a test specfied by a function
  every(); // checks if all elements in an array pass a test specified by a function
 
@@ -81,3 +93,7 @@ var fruits = ["Banana", "Orange", "Apple", "Mango"];
 fruits.reverse();
 // Mango,Apple,Orange,Banana
 // it's as if you're standing in line and the back of the line becomes the front of the line.
+
+
+
+
