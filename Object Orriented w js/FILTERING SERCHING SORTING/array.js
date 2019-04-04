@@ -73,3 +73,11 @@ var points = [40, 100, 1, 5, 25, 10];
 points.sort(function(a, b){return a - b});
 // now points[0] contains the lowest value
 // and points[points.length-1] contains the highest value
+
+
+
+.reverse(); // reverses order of items in an array. it only does it one way and isn't as customizable as the sort method. 
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.reverse();
+// Mango,Apple,Orange,Banana
+// it's as if you're standing in line and the back of the line becomes the front of the line.

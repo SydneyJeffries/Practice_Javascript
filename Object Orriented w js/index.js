@@ -91,13 +91,15 @@ x = 20;
 // bc they are independant varriables from eachother
 // in this case, independant varriables means y's value will not be RE-writen to change when x's value changes. 
 // but if you redefined the x to be 20 BEFORE you declare y and asign it's value to x, then y = 20. 
+//the main difference is thawt prematives are immutable. an immutable means that the state can't be redefined after it's created.
+// objects are mutable: they can be re-defined after they're created. 
 
 let x = { value: 10 };
 let y = x
 
 x.value = 20;
-
-//^^^ when x is an object and not a premitive varriable, like the last senerio, the value of y returns as the updated x value. 
+//^^ y returns 20
+//^^^ when x is an object and not a premitive varriable, (like the last senerio), the value of y returns as the updated x value. 
 // this is because ,behind the hood, x does not equal to the object. it's instea the adress that the engine finds the object's values at. 
 // so when y is equal to x it's equal to the adress of the object.
 // thus when a premitive is referenced it's reference is it's value, but when an object is referenced it's reference is it's "address reference"
@@ -112,7 +114,7 @@ increase(number);
 console.log(number); // number returns 10 and NOT 11
 
 // ^^ this is because these premitives are independant and console.log is referencing the global varriable. 
-// this proves how the The varriables are independant because  the value does not update 
+// this proves how the The prematives are independant because  the value does not update 
 
 let number = {value: 10 };
 
