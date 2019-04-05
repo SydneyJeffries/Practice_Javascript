@@ -182,4 +182,72 @@ $( "li" ).filter( ":even" ).css( "background-color", "red" );
 
 //// Converting
 .toArray(); 
-// converts a jquery collection to an array of dom elerments, enabling the use of the array vanilla js array methods
+// converts a jquery collection to an array of dom elerments, enabling the use of the vanilla js array methods
+
+
+
+///////////////////Arrays vrs. obejcts: choosing the data structure ///
+
+//keeping Objects in an array:
+// put objects in an array when order is important
+// to acess the object in an array you have to use the index number
+// adding or removing objects from an array will mess up the index so be careful bc it can break alot of code 
+// to add remove objects in an array you use vanilla js pop shitft push unshift
+// to iterate use foreach(), some(), every()
+
+var people [
+  {name: "sydney", rate: 70, active: true},
+  {name: "paul", rate: 60, active: false},
+  {name: "sheryl", roate: 50, active: false}
+]
+
+person[1].name;
+
+//keeping  objects in objects : 
+//  good when you want to acess the objects by object name
+// but each key must be unique 
+// to add or remove objects from objects use the delete keyword or set to blank string
+// to itteratte over child objects and use a function on them (much like the array map method) use..
+// Object.keys(obj) 
+//Object.values(obj)
+// Object.entries(obj)
+// these reutrn an array 
+
+
+   let user = {
+    name: "John",
+    age: 30
+  };
+
+Object.keys(user) //= ["name", "age"]
+Object.values(user)// = ["John", 30]
+Object.entries(user) //= [ ["name","John"], ["age",30] ]
+
+//Here’s an example of using Object.values to loop over property values:
+
+ let user = {
+  name: "John",
+  age: 30
+};
+
+// loop over values
+for (let value of Object.values(user)) {
+  alert(value); // John, then 30
+}
+
+ // ^^ iterates over our keys but doesn't itierate over the parent's keys
+ // if the object has symbols as keys the symbols woundn't be iterated over. 
+
+
+ ///////////////Filtering
+ .filter(); //array method that creats a new array with elements that pass a test specicied by a function
+ // its only acceptable parameter is a function that returns a filtered selection.  you call this method on the name of the array
+ // you still have to name an empty array that you want your resulting array to be set to. 
+// the book filters an array using the forEach method and the filter method
+// the forEach method doesn't automaticlly create an array with the results like the filter method does. but it loops thro the array and applies the same..
+// funtion to every item in it. 
+// foreach can apply more than just sort as shown in the book. 
+// 
+
+
+///////////// Dynamic filtering
