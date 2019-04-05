@@ -131,6 +131,7 @@ console.log(obj); // the value will return as 11
 //OBJECTS ARE COPPIED BY THEIR REFERENCE
 
 
+
 function Circle(radius){
     this.radius = radius;
     this.draw = function() {
@@ -151,6 +152,10 @@ circle['location'] = { x: 1 };  // does the same thing (creates a property and a
 
 const propertyName = "center location";
 circle[propertyName] = { x: 2 };  // because circle['center location'] has a space, it does not work
+
+
+///////////////////////////////Placeholder ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 function Circle(radius){
     this.radius = radius;

@@ -69,6 +69,7 @@ points.sort(function(a, b){return b - a});
 // 100,40,25,10,5,1
 
 
+
 //sorting an array in random order: 
 var points = [40, 100, 1, 5, 25, 10];
 points.sort(function(a, b){return 0.5 - Math.random()});
@@ -97,3 +98,88 @@ fruits.reverse();
 
 
 
+//////////////////Jquery filter and sorting methods//////
+
+
+//// the remove method 
+
+<div class="container">
+  <div class="hello">Hello</div>
+  <div class="goodbye">Goodbye</div>
+</div>
+
+$( ".hello" ).remove();   // this gets rid of the hello div. 
+
+
+
+///// the add method 
+// several acceptable paramters:
+// .add(selector)
+// . add(elements)
+// .add(html) type an html fragment to add to the set of matched elements
+// .add(selecton) type an existing jq object to add to the set of matched elements
+
+// ^^ the stuff passed into the method is the stuff that it will add. 
+
+<ul>
+  <li>list item 1</li>
+  <li>list item 2</li>
+  <li>list item 3</li>
+</ul>
+<p>a paragraph</p>
+
+$( "li" ).add( "p" ).css( "background-color", "red" );  // notice p was added to the end of the last Li
+
+
+
+////removing element/s from the selection with the not method
+//the paramter is the elements that you wish to disclude from the following chained method. 
+/// several acceptable parameters: 
+// .not(selector)
+// .not(function)
+//  .not (selection)
+
+<ul>
+  <li>list item 1</li>
+  <li>list item 2</li>
+  <li id="notli">list item 3</li>
+  <li>list item 4</li>
+  <li>list item 5</li>
+</ul>
+$( "li" ).not( document.getElementById( "notli" ) ).css( "background-color", "red" );
+
+ // This statement changes the color of items 1, 2, 4, and 5. We could have accomplished the same thing with a simpler jQuery expression..
+ // but this technique can be useful when, for example, other libraries provide references to plain DOM nodes.
+
+
+//// iterating with the each(); method
+// it applies the same function to each element in the set. 
+// acceptable parameter: 
+// each.(function);  <-- A function to execute for each matched element.
+//
+
+$( "li" ).each(function() {
+    $( this ).addClass( "foo" );
+  });
+
+
+
+ // .filter();
+// reduces the number of elements in a matched set to those that either match a selector or pass a test specified by a function
+// parameters are selectors, functions, elements or selections
+
+<ul>
+  <li>list item 1</li>
+  <li>list item 2</li>
+  <li>list item 3</li>
+  <li>list item 4</li>
+  <li>list item 5</li>
+  <li>list item 6</li>
+</ul>
+
+$( "li" ).filter( ":even" ).css( "background-color", "red" );
+
+
+//// Converting
+.toArray(); 
+// converts a jquery collection to an array of dom elerments, enabling the use of the array vanilla js array methods
