@@ -280,3 +280,13 @@ console.log(greeting({name: 'Alice'}));  // "Howdy, Alice"
 console.log(greeting(null));             // "Howdy, stranger"​​​​​
 
 ///Avoid chaining conditional operator in production.
+
+One common usage is to handle a value that may be null:
+
+function greeting(person) {
+    var name = person ? person.name : "stranger";
+    return "Howdy, " + name;
+}
+
+console.log(greeting({name: 'Alice'}));  // "Howdy, Alice"
+console.log(greeting(null));             // "Howdy, stranger"​​​​​
