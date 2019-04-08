@@ -8,12 +8,30 @@
 </head>
 <body>
   <script>
-  
-  let tagged = {
-        animators: ["cat", "hat"],
-        dr_sus: ["dog", "ham"]
-    }
-console.log(tagged.animators);
+// using the ternary operator :: 
+/// this script was helpful because it uses the ternary operator to automate a key value pair in the objects that we create, so that we don't have to
+// include the driver value in every instance of the Person object that we craete.
+
+  function Person (name, age, ) {
+   this.name = name;
+   this.age = age;
+    this.driver = this.age >= 16 ? 'Yes' : 'No';
+}
+
+
+let p = new Person("joe", 20)
+let l = new Person("sue", 15)
+
+console.log(p.driver);
+console.log(l.driver);
+
+
+
+
+
+
+
+
     </script>
 </body>
 </html>
