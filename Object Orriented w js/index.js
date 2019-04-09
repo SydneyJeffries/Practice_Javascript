@@ -172,8 +172,66 @@ var trees = ['redwood', 'bay', 'cedar', 'oak', 'maple'];
 'bay' in trees    // returns false (you must specify the index number, not the value at that index)
 'length' in trees // returns true (length is an Array property that's on the array prototype)
 
-
+//(remeber operators are used for if, loops, and switch statements, so the above example is kind of meh..)
 //If you set a property to undefined but do not delete it, the in operator returns true for that property.
+// the in operator works, but you could also use the truthy and falsy values of properties that belong in an object
+// the following code i wrote won't execute if mycar.make is set to undefined, or zero aka falsy values.
+
+var mycar = {make: 'Honda', model: 'Accord', year: 1998};
+
+mycar.make="";
+
+if(mycar.make){
+console.log("yes"); //returns nothing because when mycar.make was redefined to undefined it became falsy so the if statement didn't execute
+}
+
+///but, with the in operator you don't risk the code block not running because of some falsy value that the property was set to... just got to be sure to
+// .. use the delete keyword to clear properties, instead of setting them to undefined. 
+
+
+///////////////////////////////// the in operator with mosh //////
+
+// the for..in  is a loop that iterates over enumerable properties of an object. 
+// the for..in loop won't iterate over non-enumerable properties or symbols.  
+// a property of an object is usually enumerable (thus iterateable with the for..in loop) unless it was crated by the Object.defineProperty method 
+// in which, you would have to  mannualy set the enumerable value to be true. 
+// if you set the enumerable attribute to false the object.keys() method and the for..in loop won't be able to find it. 
+// enumerablability is an attribute settable by object.defineProperty that provides abstraction from certain methods. 
+//The loop will iterate over all enumerable properties of the object itself and those the object inherits from it's constructor's prototype 
+// (properties closer to the object in the prototype chain override prototypes' properties).
+// pro-tip: don't use the for.. in loop on arrays. it's best to use the forEach() array method to loop over the values of an array. 
+// mozilla website says the for...in loop maybe best for debugging purposees, being an easy way to check the properties of an object by outputting to the console.
+// the for.. of loop is recomended for changing the values over the for..in loop
+// for..in loop does have the power to alter all of the values inside an object. but it's recommended to use the for..of loop for this. 
+
+function Circle(radius, size){
+    this.radius = radius;
+    this.size = size;
+    this.draw = function() {
+        console.log('draw');
+    }
+}
+
+Circle.protomemeber = "hidden";   // belongs to the constructor object only 
+
+const circle = new Circle(10, 10);
+
+circle.newkey = "was it iterated? yes";
+
+
+console.log(circle.newkey); ///returns "was it iterated? yes" //because when this was writen the address reference had not been changed yet. 
+
+for (let key in circle) {
+    if (typeof circle[key] !== "function")
+    circle[key] = 5;
+    console.log(key, circle[key]);
+}
+
+
+console.log(circle.newkey)  // returns 5  ^^ here the for in loop made all of the values = 5. 
+
+
+/////////////////////mosh's example///////////
 
 
 function Circle(radius){
@@ -185,19 +243,53 @@ function Circle(radius){
 
 const circle = new Circle(10);
 
+circle.newkey = "was it iterated? yes";
+
 for (let key in circle) {
-    if (typeof circle[key] !== "function")
-    console.log(key, circle[key]);
+    if (typeof circle[key] !== "function")  // the typeof operator returns a string value of the operator that describes it's datatype. 
+    console.log(key, circle[key]);          // check that the value isn't equal to function and as long as it's not the following code executes. 
 }
 
-// ^^ using a for in loop,  here it iterated over all the properties in the circle except for the method because we included an if statement exluding the methods. 
+// ^^ using a for in loop,  here it iterated over all the properties in the circle except...
+// for the method because we included an if statement exluding the methods. 
+
+
+///////////////////////////////MOzilla example of for..in loop while excluding the constructor/// 
+
+// if you want it to not iterate over the constructor's properties then you can include an if statement below the for in loop that excudes ..
+// the constructor's properties 
+
+var triangle = {a: 1, b: 2, c: 3};
+
+function ColoredTriangle() {
+  this.color = 'red';
+}
+
+ColoredTriangle.prototype = triangle;
+
+var obj = new ColoredTriangle();
+
+for (const prop in obj) {
+  if (obj.hasOwnProperty(prop)) {
+    console.log(`obj.${prop} = ${obj[prop]}`);
+  } 
+}
+
+// Output:
+// "obj.color = red"
+
+/////////end of mozilla example////
+
 
 
 if('radius' in circle) {
     console.log('circle has a radius')
 }
 
-// ^^ use the if in method to check to see if an object has a property or method and follow up with code if it does. 
+// ^^ use the if satement with an in operator to check to see if an object has a property or method and follow up with code if it does. 
+
+
+//////////abstraction with local varriables - mosh//////
 
 function Circle(radius){
 
