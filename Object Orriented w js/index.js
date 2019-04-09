@@ -154,7 +154,26 @@ const propertyName = "center location";
 circle[propertyName] = { x: 2 };  // because circle['center location'] has a space, it does not work
 
 
-///////////////////////////////Placeholder ////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////checking the properties exist in the object and executing code ////////////
+//
+// you would use the "in operator" if you are checking to see if an object or it's prototype has a specified property. 
+// in otherwords use the in operator to check to see if the property is "inside" the specified object.
+// syntax :  prop in object
+// prop: a string or symbol representing a property name! the property name is otherwise known as a key.
+// object : write the name of an object that will be checked for the property thro out it's prototype chain...
+// object is inclusive of arrays, objects and funtions.
+
+// the in operator being used on an array: 
+
+var trees = ['redwood', 'bay', 'cedar', 'oak', 'maple'];
+0 in trees        // returns true
+3 in trees        // returns true
+6 in trees        // returns false
+'bay' in trees    // returns false (you must specify the index number, not the value at that index)
+'length' in trees // returns true (length is an Array property that's on the array prototype)
+
+
+//If you set a property to undefined but do not delete it, the in operator returns true for that property.
 
 
 function Circle(radius){
@@ -643,3 +662,18 @@ for (let element of elements)
 
     //variable
 //On each iteration a value of a different property is assigned to variable. variable may be declared with const, let, or var.
+
+let cat = {
+    fakemethod: function() {
+        console.log(this)
+    },
+}
+
+//this is calling a method as a function call. 
+let fakem = cat.fakemethod;
+fakem();
+
+/// how you can accidently alter the window object with a method that wassn't attended for the window object, before strict mode 
+// before strict mode this would be profromed on the window object.
+// strict mode does extra error checking...
+//  one of it's features is to ensure that things arn't applied to the global object. 

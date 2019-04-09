@@ -7,26 +7,11 @@
     <title>Document</title>
 </head>
 <body>
-    hello world
-    <!----<script src="index.js"></script>
-    <script src="classes.js"></script>-->
-    <script >
+  <script>
+var mycar = {make: 'Honda', model: 'Accord', year: 1998};
+mycar.make = 
 
-let cat = {
-    fakemethod: function() {
-        console.log(this)
-    },
-}
-
-//this is calling a method as a function call. 
-let fakem = cat.fakemethod;
-fakem();
-
-/// how you can accidently alter the window object with a method that wassn't attended for the window object, before strict mode 
-// before strict mode this would be profromed on the window object.
-// strict mode does extra error checking...
-//  one of it's features is to ensure that things arn't applied to the global object. 
-
+console.log('make' in mycar); // returns true
 
     </script>
 </body>
