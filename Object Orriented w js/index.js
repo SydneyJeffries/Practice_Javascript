@@ -354,7 +354,67 @@ function Circle(radius){
 //Any other value is considered reachable if it’s reachable from a root by a reference or by a chain of references.
 
 
-////////////////////////getters and setters ////////////
+
+
+////////////////////////// getters and setters //////////////
+// there are techniquely two types of properties: Data properties and Accesor properties
+// Data properties are the kinds we've been used to. Accessor properties are made with getters and setters
+// acessor properties can not be deleted. 
+// accesor properties have different attributes. 
+//      they can have a get function -- a function with out an argument that works when property is read
+//      a set function  -- a function that has to have one placeholder argument
+//       be enumerable --- iteratable with for in loops and object.each()
+//       and configuratble 
+// accesor properties are created by functions initated with the the get and set keyword and you ditch the function keyword.
+// if you console.log the object that contains the accessor property, it doesn't list the property as being inside the object. you have to 
+// arrow down to see that it has a getter and setter in the console. and it won't show the code inside the function like it would a method. 
+let user = {
+    name: "joe",
+    surname: "rogan",
+ 
+    get fullName() {
+      return `${this.name} ${this.surname}`;
+    },
+  
+    set fullName(value) {
+      [this.name, this.surname] = value.split(" ");
+    }
+  };
+  
+  // set fullName is executed with the given value.
+  user.fullName = "sydney jeffries";
+  
+  alert(user.name); // sydney
+  alert(user.surname); // jeffries
+
+//////////////more getters and setters /////
+
+  //Getters/setters can be used as wrappers over “real” property values to gain more control over them.
+  //For instance, if we want to forbid too short names for user, we can store name in a special property _name. And filter assignments in the setter:
+  
+   let user = {
+    get name() {
+      return this._name;
+    },
+  
+    set name(value) {
+      if (value.length < 4) {
+        alert("Name is too short, need at least 4 characters");
+        return;
+      }
+      this._name = value;
+    }
+  };
+  
+  user.name = "Pete";
+  alert(user.name); // Pete
+  
+  user.name = ""; // Name is too short...
+  //Technically, the external code may still access the name directly by using user._name and by this access you can still update it.. 
+  //But there is a widely known agreement that properties starting with an underscore "_" are internal and should not be touched from outside the object.
+
+
+
 
 
 ////////////////////////////////exercise
@@ -405,59 +465,79 @@ let startTime, endTime, running, durration = 0;
 
 };
 
-///////////////////////// SECTION 3 inheritance
+///////////////////////////////     SECTION 3 inheritance     ////////////
 // inhertiance in object orriented programing is used to reduce redundant code. 
-/// inhertiance in typical obj or langos is described as a parent passing down information to a child. 
+/// inhertiance in typical obj ori langos is described as a parent passing down information to a child. 
 ///javascript has prototypical relationships. a parent is now called a prototype. it's not complicated
 // when you acess a method or property on an object, JS engine first looks in that object directly for the property
 // if the engine can't find the property in that object then it looks that the first prototype above that object, and 
 // if it can't find it it looks above that protoype and all the way to the root object untill it finds the property. 
 // in js, behind the scenes, every object in js belongs to a single prototype and they inherit all of the members from that single prototype.
 
-Object.getProtoTypeOf(x);
+let x = {
+    cat: "hello"
+  }
+
+Object.getPrototypeOf(x);
 
 // ^^ that's a way of checking the prototype of an object and viewing it's method and properties by typing that in console. 
-
+// the same is achieveable if you enter x into the console and open the drop down, under the _proto will be the name of the prototype
+// and anther drop down option to view that object's properties
 
 //////////
 
-// an array is also an reference object. all arrays belong to a single prototype that defeines the methods that arrays get to use, and 
-// that object is a child of the root object that all objects come from. 
+// an array is also an reference object. all arrays belong to a single prototype that defeines the methods that arrays get to use (such as push, filter , ect)
+// and that object is a child of the root object that all objects come from. (that doesn't really matter)
+
 
 
 ////////
 
-let person = {name: "mosh"};
+let person = {
+    name: "sydney", 
+    age: 25,
+     };
 console.log(person);
 for (let key in person)
     console.log(key);
 
-   // ^^ iterates over our keys but doesn't itierate over the parent's keys
+   // ^^ iterates over our keys but doesn't itierate over the parent's keys // the window object keys are set to unenumerable b/c it's 
+   // pursumed you wouldn't want to iterate over the window object's keys
 
-   let person = {name: "mosh"};
-   let objectbase = Object.get PrototypeoOf(person);
-   let descriptor = Object.getOwnPropertyDescriptor (objectBase, "toString");
+   let person = {
+    name: "sydney", 
+    age: 25,
+     };
+   let objectbase = Object.getPrototypeoOf(person);
+   let descriptor = Object.getOwnPropertyDescriptor(objectBase, "toString");
    console.log(descriptor);
-   
-   // when you look at the console and evaluate the property descriptor of the toString property that belongs to the root object,
+
+    // Object.getOwnPropertyDescriptor(object, "propertykey"); checks a given object's property's attributes to see what they are set to.
+   // you have to console log the method to see what it returns
+   // i have not found a way to find this information on the console with out using this above console.logy routine
    // you will see a bunch of information that's set to be true/false that helps you evaluate that property
-    // configurable: true - means you can delete the member if you want to
-    // enumerable: false - means you can't iterate over this method and prevent's it from showing up when you call to see the keys
-    // writeable: true - means you can overwrite the value of this method
-    // ^^ these are the "Attributes" attached to the toString Method
-    // all of your object's propertys own these attributes and they are settable using: 
+    //      configurable: true - means you can delete the member if you want to
+    //       enumerable: true - means you can iterate over this method with the for..in loop and the object.each
+    //       writeable: true - means you can overwrite the value of this method
+    // by default all of these aer set to true
+    // all of your object's data properties own these attributes and they are settable using: 
 
-    let person = {name: "mosh"};
-    object.defineProperty(person, "name", {
-        configurable: false;
-        writeable: false;
+    let person = {name: "sydney",};
+    Object.defineProperty(person, "name", {
+        configurable: true,
+        writable: false,
+        enumerable: true,
     });
+    person.name = "sid";      // when we tried to write over the property value it didn't return an error, it just didn't do it.
+    console.log(person.name)  // returns "sydney"
 
-///// prototype v. instant memebers
+    // the only way for someone to write-over property is to use the Object.defineProperty method over again.
+
+////////////// prototype v. instant memebers  ////////////
 
 function Circle (radius) {
     this.radius = radius;
-    this.draw = function (){
+    this.draw = function(){
         console.log('draw')
     }
 }
@@ -467,9 +547,12 @@ const c2 = new Circle(2);
 // when we do this the draw method will be coppied to both versions created out of the circle prototype. However, we can remove the draw method from them
 // and still be able to acess the draw method from each child because the parent owns it . 
 // to do this, we need to remove this.draw from the constructor function.
-// when we remove it from the constructor function, we can add it  back to the parent object by          Circle.prototype.draw = function (){
-    //                                                                                                                    console.log('draw')
- //                                                                                                                            }
+// when we remove it from the constructor function, we can add it  back to the parent object by       
+
+   Circle.prototype.draw = function (){
+        console.log('draw')
+              }
+
 // Circle.prototype (references the prototype object of all objects created by the constructor function) and we add a method by .draw and  define it
 //....all this creates a single instance of the prototype method.
 // this works b/c of the way the js engine looks at the children, then looks at the parents to find the instance of the property or method.
@@ -487,17 +570,21 @@ Circle.prototype.draw = function (){
     console.log('draw')
 }
 
+let shape = {}
+
+
+Circle.prototype = shape;  // you can set the prototype with the prototype property
 
 const c1 = new Circle(1);
 const c2 = new Circle(2);
 
 
-// instant memebers have acess to prototype memebers. prototype members have access to instant memebers.
+// instant memebers have acess to prototype memebers.
 // prototype memeberrs are either defined outside of the constructor function (w/ dot notation syntax) or  defined inside the parent obj
 // instant memebers are more local, meaning the js engine looks at them first, so if the same member is defined in a prototype and an instant, but defined
 // differently, the definition of the instant member will be used...
 
-//////////iterating over instance and prototype memebers
+/////////////iterating over instance and prototype memebers /////////
 
 object.keys(c1));
 
