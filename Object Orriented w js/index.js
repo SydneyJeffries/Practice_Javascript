@@ -282,41 +282,79 @@ for (const prop in obj) {
 
 
 
-if('radius' in circle) {
-    console.log('circle has a radius')
-}
-
-// ^^ use the if satement with an in operator to check to see if an object has a property or method and follow up with code if it does. 
-
-
-//////////abstraction with local varriables - mosh//////
-
 function Circle(radius){
 
-let color = "red" // <-- is not a property of an object b/c it's not set with this. this.color = red is a property.
-// this is only a local varriable inside the function. 
-
-this.radius = radius
-
-let  defaultLocation = { x: 0, y: 0} // it was this.defaultLocation = {x:0 y: 0} but we changed it to be a local object and it's now not accessable
-// outside of this object. This is abstraction in practice. By doing this we make our interface of the object simpler and reduce the impact of changing 
-// the values. Because now we'd only have to update the value every time it's seen in the object and not everywhere in our code. 
-
-this.computerOptimunLocation = function() {
-    //
+    let color = "red" // <-- is not a property of an object b/c it's not set with this. this.color = red is a property.
+    // this is only a local varriable inside the constructor function. // when we go outside of this function the varriable goes out of scope and dies. 
+    
+    this.radius = radius
+    
+    let defaultLocation = { x: 0, y: 0} // it was this.defaultLocation = {x:0 y: 0} but we changed it to be a local object .
+    // By doing this we make our interface of the object simpler 
+    //Because now we'd only have to update the value every time it's seen in the object and not everywhere in our code. 
+    
+     function computerOptimunLocation() {
+        console.log('paw');
+        }
+    
+    let math = 20;
+    
+    this.draw = function() {
+        computerOptimunLocation();
+        console.log('draw');
+        console.log(color)
+        }
     }
-this.draw = function() {
-    computerOptimunLocation;
-    console.log('draw');
+    
+    const circle = new Circle(10);
+    circle.draw();
+    circle.computerOptimunLocation = function(){
+        console.log('flaw'); };
+    circle.computerOptimunLocation();
+    
+    /// a CLOSURE is a piece of information that a function calls upon
+    // (at any point of the function; parameter or inside the function) that belongs to the outside scope. 
+    // a closure is when a function or expression needs to look up for the varriable. 
 
-    }
-}
-
-const circle = new Circle(10);
-circle.draw();
+    //testing: here inside the constructor funtion i've truned computerOptimunLocation into what I suspected would behave like a local function,
+    // but somehow from the outside I can still change function and even proform it. 
+    // im going to see if the local object behaves the same way, where i can edit, and call it from the outside of the constructor function
+    
+    circle.defaultLocation = {x: 1 , y: 0};
+    console.log(circle.defaultLocation); // it returns the updated values
+    console.log(circle.color)  // the local varriable that we made and  set to a string returned to be undefined. thus was not accessable from outside
+    console.log(circle) // returns circle object and has the updated x and y values. 
+    // thus so far 
+    console.log(circle.color) // i'm calling color now that i've made a closure out of color
+    console.log(circle.math) // does not return anything. it looks like our varriables set to premative in local scope are not accessable outside the object.
 
 /// a CLOSURE is a piece of information that a function calls upon
 // (at any point of the function; parameter or inside the function) that belongs to the outside scope. 
+// a CLOSURE should not be confused with scope because a function has closure when it needs to rely on outside scope. 
+
+/////what to look out for involving closures: 
+// large scope lengths: everytime a varriable must be looked up you need to transverse up the scope chain to find the varriable. 
+// 
+// garbage collection: there are garbage collection languages. javascript is a garbage collected languages. it may cause problems for proformance and 
+// memory leeks when developers don't understand the extend of garbage collection that is done and what to look out for. 
+// understanding js memory leaks and how to spot and dignose them: 
+// often caused by devs poor understanding of the garbage collector
+// a memory leak occurs when you many no longer need a js object or varriable but the Js runtime may think you still do. it demenishes the proformance of 
+// the app by reducing the amount of memory available for it to perform tasks. 
+//
+//the main concept in maemory management in JS is reachability...
+//Simply put, “reachable” values are those that are accessible or usable somehow. They are guaranteed to be stored in memory.
+// There’s a base set of inherently reachable values, that cannot be deleted for obvious reasons.
+//For instance:
+//  Local variables and parameters of the current function.
+//  Variables and parameters for other functions on the current chain of nested calls.
+//  Global variables.
+//  (there are some other, internal ones as well)
+//  --these values are called roots.
+//Any other value is considered reachable if it’s reachable from a root by a reference or by a chain of references.
+
+
+////////////////////////getters and setters ////////////
 
 
 ////////////////////////////////exercise
