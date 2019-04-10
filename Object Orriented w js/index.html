@@ -9,51 +9,28 @@
 <body>
   <script>
 
-function Circle(radius){
-
-let color = "red" // <-- is not a property of an object b/c it's not set with this. this.color = red is a property.
-// this is only a local varriable inside the constructor function. // when we go outside of this function the varriable goes out of scope and dies. 
-
-this.radius = radius
-
-let  defaultLocation = { x: 0, y: 0} // it was this.defaultLocation = {x:0 y: 0} but we changed it to be a local object .
-// By doing this we make our interface of the object simpler 
-//Because now we'd only have to update the value every time it's seen in the object and not everywhere in our code. 
-
- function computerOptimunLocation() {
-    console.log('paw');
-    }
-
-let math = 20;
-
-this.draw = function() {
-    computerOptimunLocation();
-    console.log('draw');
-    console.log(color)
+function Circle(radius, size){
+    this.radius = radius;
+    this.size = size;
+    this.draw = function() {
+        console.log('draw');
     }
 }
 
-const circle = new Circle(10);
-circle.draw();
-circle.computerOptimunLocation = function(){
-    console.log('flaw'); };
-circle.computerOptimunLocation();
+Circle.protomemeber = "hidden";   // belongs to the constructor object only 
 
-/// a CLOSURE is a piece of information that a function calls upon
-// (at any point of the function; parameter or inside the function) that belongs to the outside scope. 
-// 
-//testing: here inside the constructor funtion i've truned computerOptimunLocation into what I suspected would behave like a local function,
-// but somehow from the outside I can still change function and even proform it. 
-// im going to see if the local object behaves the same way, where i can edit, and call it from the outside of the constructor function
+const circle = new Circle(10, 10);
 
-circle.defaultLocation = {x: 1 , y: 0};
-console.log(circle.defaultLocation); // it returns the updated values
-console.log(circle.color)  // the local varriable that we made and  set to a string returned to be undefined. thus was not accessable from outside
-console.log(circle) // returns circle object and has the updated x and y values. 
-// thus so far 
-console.log(circle.color) // i'm calling color now that i've made a closure out of color
-console.log(circle.math) // does not return anything. it looks like our varriables set to premative in local scope are not accessable outside the object.
- 
+circle.newkey = "was it iterated? yes";
+
+
+console.log(circle.newkey); ///returns "was it iterated? yes" //because when this was writen the address reference had not been changed yet. 
+
+for (let key in circle) {
+    if (typeof circle[key] !== "function")
+    circle[key] = 5;
+    console.log(key, circle[key]);
+}
 
 
     </script>

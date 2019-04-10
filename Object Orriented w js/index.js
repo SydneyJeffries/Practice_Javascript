@@ -189,7 +189,7 @@ console.log("yes"); //returns nothing because when mycar.make was redefined to u
 // .. use the delete keyword to clear properties, instead of setting them to undefined. 
 
 
-///////////////////////////////// the in operator with mosh //////
+///////////////////////////////// the for in loop with mosh //////
 
 // the for..in  is a loop that iterates over enumerable properties of an object. 
 // the for..in loop won't iterate over non-enumerable properties or symbols.  
@@ -203,6 +203,7 @@ console.log("yes"); //returns nothing because when mycar.make was redefined to u
 // mozilla website says the for...in loop maybe best for debugging purposees, being an easy way to check the properties of an object by outputting to the console.
 // the for.. of loop is recomended for changing the values over the for..in loop
 // for..in loop does have the power to alter all of the values inside an object. but it's recommended to use the for..of loop for this. 
+// it iterates over the key names
 
 function Circle(radius, size){
     this.radius = radius;
@@ -573,7 +574,8 @@ Circle.prototype.draw = function (){
 let shape = {}
 
 
-Circle.prototype = shape;  // you can set the prototype with the prototype property
+Circle.prototype = shape;  // you can set the prototype with the prototype property 
+// there is a different way to set prototype with obj lit syntax
 
 const c1 = new Circle(1);
 const c2 = new Circle(2);
@@ -584,18 +586,46 @@ const c2 = new Circle(2);
 // instant memebers are more local, meaning the js engine looks at them first, so if the same member is defined in a prototype and an instant, but defined
 // differently, the definition of the instant member will be used...
 
-/////////////iterating over instance and prototype memebers /////////
 
-object.keys(c1));
+
+//////////////////////   iterating over instance and prototype memebers /////////
+// object.keys() will turn an array with string entries of the key names given in the object.
+// it ignoores unenumerable properties, symbols and prototyp memebers
+// with the returned array, you can use the array methods and properties if you want to. 
+
+object.keys(c1);
+object.values(c1) // returns an array of all the "values"
+object.entries(c1) // returns an array of the key, value pairs. 
 
 //^^ object.keys only returns instant memebers draw will not show up in the array, b/c draw is a prototype memeber.
 
+
 for (let key in c1)
     console.log(key);
+        // returns all the key names of the object and it's prototype memebers that are enumerable and nonsymbols
 
 //^^ the for in loop returns both prototype and instant memebers. 
-
+// with the for..in loop you can create exclusions like the one we did with mosh. 
+// the for..in loop does not return an areray, unless you have it do the push method on an array, then you can make it do that.
+// but why would you do that when you have object.keys? maybe because you want to leave out certain data types, and create exceptions on
+// what gets pushed out to the array. 
+// for in loop was great for console.logging but because it doesnt operate in a predictable order...
+ //the for..of loop combined with the object.kets/values/entries the would be way better suited for proforming action on
+ // the entries in the object. 
+// for proforming a series of code on the memebers. 
 // instant memebers are also called own members. 
+
+
+////////the for..of loop //// 
+// the for..of loop iterates over iterable objects. 
+// arrays and maps are by deafault iterable objects, but objects are not.
+// to make an object an iterable object, you have give an object or one of it's prototypes the @@iterator key. 
+// uncompleted.//
+// 
+
+
+
+
 
 /////////////////////// exercise 2
 
@@ -652,7 +682,7 @@ function Timewatch () {
 
    
 
-    ///////////////////////////////////////section 3 prototpyical inheritance
+    ///////////////////////////////////////section 3 prototpyical inheritance /////////////
 // we want circle and shape objects to inherit certian methods from the shape object. 
 
 
