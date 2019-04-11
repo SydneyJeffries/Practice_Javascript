@@ -723,7 +723,8 @@ function Timewatch () {
    
 //////////////////////////////////section 3 prototpyical inheritance /////////////
 // we want circle and shape objects to inherit certian methods from the shape object. 
-
+// Object.create(); is a method that is used to set children to have a defined (passed in parameter) prototype.
+// we have to set it equal to the child object we give the parent
  
 function Shape() {}
 function Circle() {}
@@ -795,7 +796,7 @@ c.draw();  // returns "draw" in the console
     }
 
     function extend(Child, Parent){                 //// here is our intermediate function inheritance. this way we can just pass arguments everytime we want to
-    Child.prototype = Parent.create(Parent.prototype);   // asign a new object as a child to what ever prototype we want. 
+    Child.prototype = Object.create(Parent.prototype);   // asign a new object as a child to what ever prototype we want. 
     Child.prototype.constructor = Child;               /// its as good as a math equasion worth memorizing
     }
 
@@ -813,7 +814,35 @@ c.draw();  // returns "draw" in the console
 
 
     /////////////method override //////
-/// over ride a method that is defined in a base object - method over-riding. 
+/// over-ride a method that is defined in a base object - method over-riding. 
+
+function extend(Child, Parent) {
+    Child.prototype = Object.create(Parent.prototype)
+    Child.prototype.constructor = Child;
+}
+
+function Shape() {
+
+}
+
+Shape.prototype.duplicate = function() {   // imagine this function works great in all child objects of the shape class..
+                                            // but this algo doesn't work great for circle, so how do we over-ride this method..
+    console.log('duplicate')                // to behave differntly for the circle class.. "method over-riding"
+}
+
+function Circle() {
+
+}
+
+
+extend(Circle,Shape);
+
+Circle.prototype.duplicate = function() {        // we are over-riding the method here
+    console.log('duplicate circle');
+}
+
+const c = new Circle();
+c.duplicate(); // returns 'duplicate circle'
 
 
 
@@ -825,6 +854,50 @@ c.draw();  // returns "draw" in the console
 // that allow child objects to impliment methods their own way and use For let loops on a method that belongs to the prototype,
 // and it impliments all of versions of the methods (the child versions), that we would otherwise have to use switch statements to 
 // do that. 
+
+
+
+function extend(Child, Parent) {
+    Child.prototype = Object.create(Parent.prototype)
+    Child.prototype.constructor = Child;
+}
+
+function Shape() {
+}
+
+Shape.prototype.duplicate = function() {   
+                                            
+    console.log('duplicate')                
+}
+
+function Circle() {
+}
+
+function Square(){
+
+}
+
+extend(Circle,Shape);
+extend(Square,Shape);
+
+Circle.prototype.duplicate = function() {        
+    console.log('duplicate circle')
+}
+
+Square.prototype.duplicate = function () {
+    console.log('duplicate square')
+}
+
+const shapes = [
+    new circle(),
+    new Square()
+];
+
+for (let shape of shapes)
+    shape.duplicate();
+// returns 'duplicate circle'  'duplicate square' 
+
+// we have many implimentations from the children; of the duplicate method: polymorphism at work.
 
 ///////////////when to use inheritance ///////
 
