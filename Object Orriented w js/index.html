@@ -9,28 +9,37 @@
 <body>
   <script>
 
-function Circle(radius, size){
-    this.radius = radius;
-    this.size = size;
-    this.draw = function() {
-        console.log('draw');
+
+function Shape(color) {
+        this.color = color; 
     }
-}
 
-Circle.protomemeber = "hidden";   // belongs to the constructor object only 
+    Shape.prototype.duplicate = function() {  // adding duplicate method to the prototype of shape
+        console.log('duplicate')            // so that every instance created of the shape object won't include copies of this ..
+                                            // method
+    }
 
-const circle = new Circle(10, 10);
+    function Circle(radius, color){ // add color to the arguments
+      
+        Shape.call(this, color);   //here we are calling the super constructor.
+        // call is a method that takes the object that will recieve the property, and the key name. 
 
-circle.newkey = "was it iterated? yes";
+        this. radius = radius
+    }
+
+    Circle.prototype = Object.create(Shape.prototype); 
+    Circle.prototype.constructor = Circle; 
 
 
-console.log(circle.newkey); ///returns "was it iterated? yes" //because when this was writen the address reference had not been changed yet. 
+    Circle.prototype.draw = function() {
+        console.log('draw')
+    }
 
-for (let key in circle) {
-    if (typeof circle[key] !== "function")
-    circle[key] = 5;
-    console.log(key, circle[key]);
-}
+    const s = new Shape();
+    const c= new Circle(1, "red"); // 1. here we are creating a new instance of the circle object. we want to give it a value to the color property, 
+    // but the color property is owned by the shape object. so we will have to make changes to our circle constructor function. 
+    // this change is kown as "calling the super constructor ". the word super can symbolizes the parent. 
+    c.draw();
 
 
     </script>

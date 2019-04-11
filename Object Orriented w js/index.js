@@ -362,13 +362,51 @@ function Circle(radius){
 // Data properties are the kinds we've been used to. Accessor properties are made with getters and setters
 // acessor properties can not be deleted. 
 // accesor properties have different attributes. 
-//      they can have a get function -- a function with out an argument that works when property is read
-//      a set function  -- a function that has to have one placeholder argument
-//       be enumerable --- iteratable with for in loops and object.each()
-//       and configuratble 
+//        they can have a get function -- a function with out an argument that works to make the value readable
+//       a set function  -- a function that has to have one placeholder argument that makes the value re-writeable
+//       be enumerable --- by default they are not iteratable with for in loops and object.each() but can be set with object.defineProperty()
+//       and configuratble -- 
 // accesor properties are created by functions initated with the the get and set keyword and you ditch the function keyword.
 // if you console.log the object that contains the accessor property, it doesn't list the property as being inside the object. you have to 
 // arrow down to see that it has a getter and setter in the console. and it won't show the code inside the function like it would a method. 
+// getters are properties that call a hidden function (hidden from the object) to retrieve a value
+// setters are properties which call a hidden function (hidden from the object) to set a value
+//  
+
+var myObj {
+get a() {
+    return 2
+    }
+}
+
+myObj.a = 6;
+console.log(myObj.a) // returns 2
+console.log(myObj) // returns {}
+// returns 2 is an acessor property with a getter function that doesn't have a setter funtion, so when we re-assign a it doesn't
+// actually do anything, and the engine just silently throws it away with out giving us an error code. 
+// it's recomended you always declare a setter with a getter. 
+
+var myObject = {
+	// define a getter for `a`
+	get a() {
+		return this._a_;
+	},
+
+	// define a setter for `a`
+	set a(val) {
+		this._a_ = val * 2;
+	}
+};
+
+myObject.a = 2;
+myObject.a; // 4
+console.log{myObj} // returns { _a_: 4}
+
+
+// when we assigned a key name in our getter and setter functions, it allowed for property to show up and under that name
+
+
+///////more getters and setters
 let user = {
     name: "joe",
     surname: "rogan",
@@ -387,7 +425,9 @@ let user = {
   
   alert(user.name); // sydney
   alert(user.surname); // jeffries
+  console.log(user); // shows the name and surname property but noit the getter and setters. 
 
+  ////^^ here we changed the value of two object's properties at once by using the setter. 
 //////////////more getters and setters /////
 
   //Getters/setters can be used as wrappers over “real” property values to gain more control over them.
@@ -618,10 +658,10 @@ for (let key in c1)
 
 ////////the for..of loop //// 
 // the for..of loop iterates over iterable objects. 
-// arrays and maps are by deafault iterable objects, but objects are not.
+// arrays and maps are by deafault iterable objects, but objects are not by default.
 // to make an object an iterable object, you have give an object or one of it's prototypes the @@iterator key. 
 // uncompleted.//
-// 
+// for..of loop is great for iterating over an array. 
 
 
 
@@ -681,72 +721,56 @@ function Timewatch () {
     }
 
    
-
-    ///////////////////////////////////////section 3 prototpyical inheritance /////////////
+//////////////////////////////////section 3 prototpyical inheritance /////////////
 // we want circle and shape objects to inherit certian methods from the shape object. 
 
+ 
+function Shape() {}
+function Circle() {}
 
-    function Shape(color) {
-        
-    }
-
-    Shape.prototype.duplicate = function() { // you do this so that every object created out of the shape constuctor will inherit this memebr. this is a prototype member. 
-        console.log('duplicate')
-    }
-
-    function Circle(radius){
-
-        this. radius = radius
-    }
-
-    Circle.prototype = Object.create(shape.prototype); // we changed circle prototype to a new object that inherits from shape base. this means an object 
-    //created from the circle constructor will have acess to the circle object and it's parent; the shape object. (that's the relationship we formed here) 
-    Circle.prototype.constructor = Circle; // as best practices whenever you give an object a prototype you should also re-set the constructor to it's self, 
-    // just to avoid any hic-ups. 
-
-
-
-    Circle.prototype.draw = function() {
-        console.log('draw')
-    }
-
-    const s = new shape();
-    const c= new shape(); 
+// Prototypical inheritance 
+Circle.prototype = Object.create(Shape.prototype);
+Circle.prototype.constructor = Circle; 
 
 
 
 
-    ///////////calling the super constructor ///
 
-    function Shape(color) {
-        this.color = color; 
-    }
+///////////calling the super constructor ///
+/// the .call() method belongs to all parent objcets. you use it so that the child can get acess to the prototype's methods
+//inside the child that wishes to have the parent's properties, write Constructorfunction.call(thisArg, arg1, arg2, ...);
+   
+function Shape(color) {
+    this.color = color; 
+}
 
-    Shape.prototype.duplicate = function() { 
-        console.log('duplicate')
-    }
+Shape.prototype.duplicate = function() {  // adding duplicate method to the prototype of shape
+    console.log('duplicate')            // so that every instance created of the shape object won't include copies of this ..
+                                        // method
+}
 
-    function Circle(radius, color){ // add color to the arguments
-      
-        Shape.call(this, color);   //here we are calling the super constructor.
-        // call is a method that takes the object that will recieve the property, and the key name. 
+function Circle(radius, color){ // add color to the arguments
+  
+    Shape.call(this, color);   //here we are calling the super constructor.
+    // call is a method that takes the object that will recieve the property, and the key name. 
 
-        this. radius = radius
-    }
+    this. radius = radius
+}
 
-    Circle.prototype = Object.create(Shape.prototype); 
-    Circle.prototype.constructor = Circle; 
+Circle.prototype = Object.create(Shape.prototype); 
+Circle.prototype.constructor = Circle; 
 
 
-    Circle.prototype.draw = function() {
-        console.log('draw')
-    }
+Circle.prototype.draw = function() {
+    console.log('draw')
+}
 
-    const s = new shape();
-    const c= new circle(1, red); // 1. here we are creating a new instance of the circle object. we want to give it a value to the color property, 
-    // but the color property is owned by the shape object. so we will have to make changes to our shape constructor function. 
-    // this change is kown as "calling the super constructor ". the word super can symbolizes the parent. 
-    
+const s = new Shape();
+const c= new Circle(1, "red"); // 1. here we are creating a new instance of the circle object. we want to give it a value to the color property, 
+// but the color property is owned by the shape object. so we will have to make changes to our circle constructor function. 
+// this change is kown as "calling the super constructor ". the word super can symbolizes the parent. 
+c.draw();  // returns "draw" in the console
+
 
 
 
