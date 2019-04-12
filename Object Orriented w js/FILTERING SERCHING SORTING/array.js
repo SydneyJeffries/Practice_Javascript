@@ -258,35 +258,3 @@ for (let value of Object.values(user)) {
 
 ///////////////Sorting algos ///////
 
-////// conditional ternary operator aka the question mark operator. ///
-// this operator is frequently used as a short cut for the if statement.
-// the return values are seperated by colons. 
-
-condition ? exprT : exprF 
-//If condition can be converted to true (it is truthy), the operator returns the value of exprT; 
-//otherwise (when condition is falsy) it returns the value of exprF.
-var age = 26;
-var beverage = (age >= 21) ? "Beer" : "Juice";
-console.log(beverage); // "Beer"
-
-//One common usage is to handle a value that may be null:
-
-function greeting(person) {
-  var name = person ? person.name : "stranger";
-  return "Howdy, " + name;
-}
-
-console.log(greeting({name: 'Alice'}));  // "Howdy, Alice"
-console.log(greeting(null));             // "Howdy, stranger"​​​​​
-
-///Avoid chaining conditional operator in production.
-
-One common usage is to handle a value that may be null:
-
-function greeting(person) {
-    var name = person ? person.name : "stranger";
-    return "Howdy, " + name;
-}
-
-console.log(greeting({name: 'Alice'}));  // "Howdy, Alice"
-console.log(greeting(null));             // "Howdy, stranger"​​​​​

@@ -724,6 +724,7 @@ function Timewatch () {
 //////////////////////////////////section 3 prototpyical inheritance /////////////
 // we want circle and shape objects to inherit certian methods from the shape object. 
 // Object.create(); is a method that is used to set children to have a defined (passed in parameter) prototype.
+// despite how it reads, object.create doesn't create a new object.
 // we have to set it equal to the child object we give the parent
  
 function Shape() {}
@@ -755,7 +756,7 @@ function Circle(radius, color){ // add color to the arguments
     Shape.call(this, color);   //here we are calling the super constructor.
     // call is a method that takes the object that will recieve the property, and the key name. 
 
-    this. radius = radius
+    this.radius = radius
 }
 
 Circle.prototype = Object.create(Shape.prototype); 
@@ -792,7 +793,7 @@ c.draw();  // returns "draw" in the console
       
         Shape.call(this, color);  
 
-        this. radius = radius
+        this.radius = radius
     }
 
     function extend(Child, Parent){                 //// here is our intermediate function inheritance. this way we can just pass arguments everytime we want to
@@ -910,8 +911,8 @@ function HtmlElement () {
     }
 }
 
-HtmlElement.prototype.focus = function (){
-    console.log('focused');
+HtmlElement.prototype.focus = function (){      //setting the a method on a prototype so that all instances don't 
+    console.log('focused');                     // include it...saves memory
 }
 
 
@@ -929,14 +930,14 @@ function HtmlElementSelector () {
 
 HtmlElementSelector.prototype = new HtmlElement(); // here we are setting the prototype of HTMLslector to the HTMLelement constructor
 // b.c the constructor has acess to the instant memebers...and the prototype memebers because that one will link to the prototype of htmlelement. 
-//this is setting the element to "inherit from the instance" of the htmlElement. 
+//this is called "setting the object to "inherit from the instance" of the anther object". 
 HtmlElementSelector.prototype.constuctor = HTMLSelectElement;
 // you have to reset the consturcor. 
 
 
 
 ////////////////////////////////exercise 2: polymorphism. ////////
-
+//recap: Polymorphism means Ability to call the same method on different objects and each object responds in different way.
 
 function HtmlElement () {
     this.click = function (){
@@ -1021,3 +1022,17 @@ fakem();
 // before strict mode this would be profromed on the window object.
 // strict mode does extra error checking...
 //  one of it's features is to ensure that things arn't applied to the global object. 
+
+
+
+
+/////////////////// Mixins with ES6 ///////
+
+//a mixin is a class that contains methods for use by other classes without having to be the..
+//parent class of those other classes.
+// in other words- a mixin is a class that we specificly set methods in to be used in a bunch of other classes
+// this is useful b/c in js classes they can only have one prototype. 
+//so allowing a class to acess and mixin and giving that same class a prototype is as if it has two parents
+// but it doesn't actually b/c that's agaisnt the rules and this is a mixin
+
+//https://javascript.info/mixins
