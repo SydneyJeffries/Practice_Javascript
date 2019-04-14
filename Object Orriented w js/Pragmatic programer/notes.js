@@ -37,6 +37,7 @@ var cartArray = ["hi", "example"]
 var cart = [...cartArray] // returns an error in the console because the spraed operator to be used as a value. 
 
 .slice()
+// slice is also used for making copies because it turns the selected index to index into a new array.
 // if you're trying to cut something out of an array, you would use the .slice or splice method. 
 // the author says mutations are bad and so, slice is better because it doesn't mutate the orignal array, but returns a new one to work with.
 // takes two parameters: a start and ending index numbers. 
@@ -50,4 +51,35 @@ var cart = [...cartArray] // returns an error in the console because the spraed 
 
 
 // you can use spread operator to insert an array of information into a funtion's parameters. 
+// it does the same thing as :
+exampleFunction(array[1], array[2], array[3]);
+
+// using spread operator it's
+exampleFunction([...array]);
+// using the spread operator it's clear to the next programer that the function takes an array inorder to operate as intended. 
+
+// the author recormends "functional javascript" by michael fogus 
+// functional javascript recomends to avoid mutation functions
+// .push is a typical mutation method: it updates the orginal array by adding an item to the end.
+//you can avoid this side effect with the spread operator. 
+// the book example shows the problem with mutations is that when anther programer comes along, well meaningly, and moves 
+// varriable decorations to the top of the function, not realizing there is a mutation,  it will change the outcomes 
+// when those moved varriables are used. 
+// so instead of using the push method, it's recomended you concatinait by re-writing the contents into a list. this creates a brand
+//new array...
+
+function addGift(cart){
+    if (cart.length > 2) {
+        return [...cart,reward];   // is the same as cart.push(reward)
+    }
+    return cart;
+}
+
+// you can do the shift method with spread operators :
+const moreTitles = ['mobydick', 'white teeth'];
+const evenMoreTitles = ['the conscious mind',...moreTitles];  //same as evenmoreTitles.shift('the concious mind')
+
+// you can do the slice() method with shift operators: 
+const moreCopies = ['mobydick', 'white teeth'];
+const moreCopied = [...moreCopies];   // same as moreCopied.slice()
 
