@@ -1,3 +1,5 @@
+
+
 ///// these are notes i wrote while reading along my "Simplifing Javascript ES6" pragmatic programer book ///// 
 
 ////////// tempalate literals /////
@@ -37,7 +39,6 @@ var cartArray = ["hi", "example"]
 var cart = [...cartArray] // returns an error in the console because the spraed operator to be used as a value. 
 
 .slice()
-// slice is also used for making copies because it turns the selected index to index into a new array.
 // if you're trying to cut something out of an array, you would use the .slice or splice method. 
 // the author says mutations are bad and so, slice is better because it doesn't mutate the orignal array, but returns a new one to work with.
 // takes two parameters: a start and ending index numbers. 
@@ -51,35 +52,100 @@ var cart = [...cartArray] // returns an error in the console because the spraed 
 
 
 // you can use spread operator to insert an array of information into a funtion's parameters. 
-// it does the same thing as :
-exampleFunction(array[1], array[2], array[3]);
 
-// using spread operator it's
-exampleFunction([...array]);
-// using the spread operator it's clear to the next programer that the function takes an array inorder to operate as intended. 
+/////////////    Maps   ////////// pg 55-68
+// use objects for static- unchaning data : recommended 
+// maps are like objects b/c key value pair, but used instead of objects when:
+//  -key-value pairs are frequently added or removed,
+// - when a key isnt a string,
+// - when the data needs to be iterated over.  
+//maps are better then objects because the smantics of the map methods clearly communicate what's happening to the map. 
+// .delete(), .clear() , .set() .entries(),  
+// maps are better then objects because they are by default iteratable and objects are not unless you do a large work around to set
+// them as iteratable.  iteratable meaning you can use them in the for...of loop.(.entries() converts the map into an iteratable object)
 
-// the author recormends "functional javascript" by michael fogus 
-// functional javascript recomends to avoid mutation functions
-// .push is a typical mutation method: it updates the orginal array by adding an item to the end.
-//you can avoid this side effect with the spread operator. 
-// the book example shows the problem with mutations is that when anther programer comes along, well meaningly, and moves 
-// varriable decorations to the top of the function, not realizing there is a mutation,  it will change the outcomes 
-// when those moved varriables are used. 
-// so instead of using the push method, it's recomended you concatinait by re-writing the contents into a list. this creates a brand
-//new array...
 
-function addGift(cart){
-    if (cart.length > 2) {
-        return [...cart,reward];   // is the same as cart.push(reward)
-    }
-    return cart;
+//// creating a map: 
+
+let filters = new Map();  // always has to be initalized in this way
+filters.set('breed', 'lab') // 1st parameter is the key, 2nd parameter is the value
+.set('size', 'large')
+.set('color', 'chocolate');
+
+ filters.get('size') //large
+ .get('color')  // chocolate
+ 
+
+
+ //turning a map into an array of pairs using the spread operator: 
+ let arrayMap = [...filters]
+ // [ ['color', 'black'] , ['breed, 'labrator'] ]
+//once it's in an array of pairs you can easily iterate over the array version and you can even use array methods on the map. 
+
+ 
+ /////////   maps    /////
+////// creating copries of new maps 
+// to create a copy of a map, and otherwise avoid mutations to the orginal, use the spread operator into an array. 
+
+let copy  = [...map];
+
+
+
+
+ ////////// for... of and for...in loops////
+
+// in for.. in loops it matters that the properties are set to have enumerable attribute: true
+// for... in loops it iterates over the key
+
+// for... of loops it matters that the properties are set to itterable 
+//for... of loops iterate over the value
+ let iterable = [3, 5, 7];
+
+
+for (let i in iterable) {
+    console.log(i); // logs 0, 1, 2, 
+  }
 }
 
-// you can do the shift method with spread operators :
-const moreTitles = ['mobydick', 'white teeth'];
-const evenMoreTitles = ['the conscious mind',...moreTitles];  //same as evenmoreTitles.shift('the concious mind')
+for (let i of iterable) {
+  console.log(i); // logs 3, 5, 7
+}
 
-// you can do the slice() method with shift operators: 
-const moreCopies = ['mobydick', 'white teeth'];
-const moreCopied = [...moreCopies];   // same as moreCopied.slice()
 
+//////////  sets     //////
+// sets are anther collection type (collection type: like objects and maps)
+// it does one thing very well : creating a list of unique items
+// set is like an array (in that it only has inputable value) but, sets can only contain one instance of each item. 
+
+
+// if your starting with an array and you want to get the unique values from an array then the solution using a set is really simple:
+
+const colors = ['black', 'black', 'chocolate'];
+const unique = new Set(colors); //returns  set {'black', 'chocolate'}
+
+// inorder to make a set into an array use the spread operator:
+const colors = ['black', 'black', 'chocolate'];
+let setArray = [...newSet(colors)]; // returns ['black', 'chocolate'];
+
+
+//if you're using a set to get unique values from an array of objects you'll need to create a for...of loop:
+funtion getUniqueColors(dogs) {
+    const unique = new Set();
+    for (const dog of dogs) {
+        unique.add(dog.color)
+    }
+    return [...unique];
+}
+
+
+//// sets have built in methods that are the same as the built in methods for a map:
+// .add() , .delete() , clear()
+let names = new Set();
+names.add('joe');
+names.add('sydney')
+names.delete('joe');
+names.clear();  //erases the entire set. 
+
+
+// sets will ignoore instead of update anytime you try to add a value that already exists in the set. 
+// this perserves order
