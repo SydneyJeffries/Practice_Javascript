@@ -112,23 +112,22 @@ for (let i of iterable) {
 }
 
 
-//////////  sets     //////
+////////////  sets     ////////
 // sets are anther collection type (collection type: like objects and maps)
 // it does one thing very well : creating a list of unique items
-// set is like an array (in that it only has inputable value) but, sets can only contain one instance of each item. 
-
+// set is like an array (in that it only has value) but, sets can ONLY contain ONE INSTANCE OF EACH ITEM.
 
 // if your starting with an array and you want to get the unique values from an array then the solution using a set is really simple:
 
 const colors = ['black', 'black', 'chocolate'];
-const unique = new Set(colors); //returns  set {'black', 'chocolate'}
+const unique = new Set(colors); //returns  set { 'black', 'chocolate' }
 
 // inorder to make a set into an array use the spread operator:
 const colors = ['black', 'black', 'chocolate'];
-let setArray = [...newSet(colors)]; // returns ['black', 'chocolate'];
+let setArray = [...new Set(colors)]; // returns [ 'black', 'chocolate' ];
 
 
-//if you're using a set to get unique values from an array of objects you'll need to create a for...of loop:
+//if you're using a set to get unique values from an array made of objects you'll need to create a for...of loop:
 funtion getUniqueColors(dogs) {
     const unique = new Set();
     for (const dog of dogs) {
@@ -136,7 +135,8 @@ funtion getUniqueColors(dogs) {
     }
     return [...unique];
 }
-
+// ^^this works because it won't add anything it already has a uinque value of. 
+//it will just ignoore and duplicate and move onto the the next phase of the loop.
 
 //// sets have built in methods that are the same as the built in methods for a map:
 // .add() , .delete() , clear()
@@ -148,4 +148,99 @@ names.clear();  //erases the entire set.
 
 
 // sets will ignoore instead of update anytime you try to add a value that already exists in the set. 
-// this perserves order
+
+
+///
+////////////////// Chapter 4: write clear conditionals //////////
+// we will review truthy/falsey, ternaries , and short circuiting to create more clear concise conditionals. 
+// 
+// review:
+// equivalent vrs identical values
+// 1 == "1" is true because the values are equivalent
+ // equivalent is when it's the same but the types maybe different. will only be seen in == and not strictly equal. 
+// 1 === 1 is true because the values are identical 
+
+// falsy values
+// flase, null, 0, NaN , '' , "" 
+
+// when youre using the existance of a value to be the checker in the if statement , becareful because the key could 
+//exist but be equal to a falsy value. 
+// checking if a value is there using the truthy and falsey trick  is all good, but what if the value is equal to something falsey like
+// bellow
+
+const employee = {
+    name: 'eric',
+    equiptmentTraining: "",
+}
+
+if (!employee.equiptmentTraining) {
+    return 'not authorized to operate machinery'
+}
+
+/// reads if (!false) because the equiptment training is set to a falsy value.
+// the author says that truthy and falsy are great for keeping clean conditionals and the work around 
+// in order to keep using truthy and fasly, would be to never let your object values be set to an empty string or zero. 
+// because they can create falsy situations.
+
+
+// using the stricter applier in your conditional statements
+const employee = {
+    name: 'eric',
+    equiptmentTraining: true,
+}
+
+if (employee.equiptmentTrainingTraining !== true ) {
+    return 'not authoerized to operate machinery'
+}
+
+
+/////////// ternary operator /////
+/// ? is the ternary "operator" 
+// ternaries create quick if/then checks.
+//
+if(true) {
+    var display = 'bold'
+}
+else {
+    var display = 'normal'
+}
+
+const display = true ? 'bold' : 'normal';
+// here ternary operator cleaned up this if else statement that assigns a value to a varriable.
+// and it allowed us to assign a to const because it's no longer being assinged in block scope like above
+// if we used const in the above application, we wouldn't be able to access the value of display from global. 
+
+
+/////// Short Circuiting  evaluations//////
+// short circuiting evaluations cleans up if statements. 
+// you can make shorter alot of code with short circuiting routines. 
+// in JS your short Circuiting operators are && and ||. 
+// || is t he logical OR. the logical or will return true on one of the values.
+// the book considered the final value in the || short circut to be the default value. - it will return if nothing else in the front of the
+// expression does..
+// when a value in a || returns true it also returns the truthy value.
+
+const name = "sydney" || "i have no name" 
+name // returns "sydney"
+
+
+
+function getIconPath(icon) {
+    const path = icon.path || 'uploads.png'
+    return 'htttp://assets/"${path}';
+}
+
+
+/////// short circuiting with the && operator ///// 
+// && is the and operator. everyhthing in the expression with the and operator has to be true inorder for the following code to execute
+//the book used the && operator to make smaller code of conditonal statements that looked like this: 
+
+if( asdfasdf){
+    if(sadfasdf) {
+        //some code
+    }
+}
+///the book made the same statement as above using the && short circuit evaluations:
+    if (asdfasdf && asdfasd){
+
+    }
