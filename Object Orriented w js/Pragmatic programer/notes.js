@@ -214,6 +214,8 @@ const display = true ? 'bold' : 'normal';
 /////// Short Circuiting  evaluations//////
 // short circuiting evaluations cleans up if statements. 
 // you can make shorter alot of code with short circuiting routines. 
+// our short circuiting techniques rely on truthy and valsey values so be sure that your data that we are checking
+// for existance isnt set to an "" or a 0.
 // in JS your short Circuiting operators are && and ||. 
 // || is t he logical OR. the logical or will return true on one of the values.
 // the book considered the final value in the || short circut to be the default value. - it will return if nothing else in the front of the
@@ -242,5 +244,30 @@ if( asdfasdf){
 }
 ///the book made the same statement as above using the && short circuit evaluations:
     if (asdfasdf && asdfasd){
-
+ 
     }
+
+
+///////////// Let Var and Const /////////
+// variable declaration vrs varriable initialization
+// varriable decloration is declaring the name with let var or const
+// varriable initialization is when you first assign a value to the varriable. 
+// to understand the varriables you have to pay close attention to the scope concepts.
+
+// var has function scope, global scope , but not block scope.
+// var declared varriables are  hoisted to the top of the scope they were decalred. 
+// var varriables should be decalreed at the top of the scope because this is how the engine will read it anways. this is good to ..
+// avoid confusion.. 
+// if var is declared and initalized in block scope {} it will become a global varriable.
+// if you want a varriable created in function scope to become accessable to other parts of the code, you need to return it from the function
+
+// let has global and block scope. 
+// block scope is a scope that also includes funtion scope. to say something has function scope like var, is more restrictive then block scope. 
+// let created varriables will be aviabale inside the block they were created in as well as any nested blocks. 
+// let varriables created in block scope will not be accessable outside the block.
+// let is not hoisted like var. 
+
+// const has global and block scope
+// const has block scope which means they are not accessable outside the block but from w/n the block and the block's nested componets. 
+// varriables declared with const can't be re-assigned.  
+// 
