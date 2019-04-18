@@ -151,7 +151,7 @@ names.clear();  //erases the entire set.
 
 
 ///
-////////////////// Chapter 4: write clear conditionals //////////
+/////////////////////////// Chapter 4: write clear conditionals //////////
 // we will review truthy/falsey, ternaries , and short circuiting to create more clear concise conditionals. 
 // 
 // review:
@@ -271,3 +271,104 @@ if( asdfasdf){
 // const has block scope which means they are not accessable outside the block but from w/n the block and the block's nested componets. 
 // varriables declared with const can't be re-assigned.  
 // 
+
+///////////////////////////////////// Chapter 5: simplifying loops ////////
+
+/////////////////////// Arrow functions ///////
+// "Call Back Functions" - functions that used as parameters in other functions, "functions that take callbacks."
+// arrow functions are shorter syntax thus prettier/simplier use case for callbacks. 
+// they are great cause you can write them as anynomous functions (w/o assigning to a varriable)
+// right into the parameters of the function that takes the callback.
+// this is prettier code because sometimes the callback function is bigger then the orginal function and that's ugly.
+// this is also easier code then writing the name of the function becasuse the reviewing developer will be able directly see (w/o looking up)
+// exactly what the call back function does
+
+/// arrow functions can execute imediately like anymonous functions do as long as they are not assinged to a varriable
+// or they can work like named functions and execute when called if they are assigned to a varriable. 
+
+////////////////////// Arrray Methods: writing shorter loops with array methods ////
+// array methods either change the "size" or the "shape" of the array. 
+// when deciding wich method to use in a loop or isntead of a loop:...
+//... ask yourself is the size or shape going to change in this data that's going thro the loop.
+// and remeber, you can chain array methods, so this makes it possible to change the size and shape of the same array. 
+// arry methods that change the size: filter() find() 
+// chage the shape: map() forEach() 
+// re-aranges the values:  sort() 
+//changes the size and shape: reduce()
+
+// forEach() no automatic return value
+// find() no automatic return array: also only returns one value
+
+/////////////// MAP()  : shaping ///////
+// map() is often a replacement for a for loop. (for loops are the loops i first learned about ) 
+// they work on arrays and loop for as many times as the array has memebers. 
+// the map() method performs the same function ,-- the function you passed in -- the callback function ,on all the members of the array.
+// it automaticly pushes the result into an array so traditionally where you would use a for loop on members of an array and assign the push
+// ..method at the end, you don't need to do that anymore if you use the map method. it reduces alot of code
+// 
+const band = [
+    {   },
+    {   },
+    {   }
+]
+const instruments = [];
+for (let i = 0; i < Band.length; i++)
+{
+    const instrument = band[i].instrument;
+    instruments.push(instrument)
+}
+const instruments = band.map(member => member.instrument)
+// returns the same array as the for loop does above
+
+//map is great when your end resulting array is expected to be the same size as the array you started with.
+//map dosn't mutate the orginal array either. 
+// map changes the information in the arrays but you get an array back the same size
+
+
+/////////////////  filter() and find() :sizing ///////
+// filter(); you won't change the information you will just get a reduced amount of the orginal array back.
+// filter(); automaticly returns an array of results // does not mutate 
+// if no result is found then it returns and empty array which is truthy so be mindful for conditonals. 
+// the parameter is the functin you want to call on each memeber of the item
+
+const scroes = [30, 82, 70, 45];
+const passing = scores.filter(score => score > 59);
+// [70, 82]
+
+/// find() takes a function as an arguyment that returns the first result from the array that evaluates to be true given the circimstances it
+// was passed. 
+// if no result is found then it returns undefined w/ is falsy. 
+// when preparing a seperate answer in a conditional satement that was passed a false value you can use the logical OR:
+const profile = images.find(imgage => image.profile) || {path: './default/jpg'}
+
+
+////////////////////// forEach() : side effects //////
+// for each performs an action on ever memeber of the array. 
+// like the previous methods, it takes a callback function that's only argument is an argument that represents a member of that array. 
+// forEach() isnt a method you'd use if you want a return array. it doesn't return an array w/o using push.
+// the map() could to that so much faster
+// instead, forEach is for occasions where you'd want a "side effect" from a function to happen to each member of the array
+// the book uses an example of an array of names called the email list. 
+// the foreach() is called on each member of the email list and a named function called sendEmail is executed for each memebr of the array
+
+const names = [
+    "sue",
+    "joe",
+    "herny"
+]
+
+names.forEach(member => sendEmail(member));
+
+// the book says forEach is also best used when chaining it to other array methods. 
+
+////////////////// combine array methods w. chaining ////////////
+// chaining means you can call several methods in a row (as long as you get an array back). <-- note forEach() breaks the chain b.c it doesn't
+// return a method back...
+// chaining is a convient way to perform several actions in a clear manner. 
+
+//////////////// reduce() : changing the shape and size ////////
+// with the reduce method you can effectively turn an array into anther data type
+// or it can do anything that map filter and find can do. 
+// the reduce() method has a  slightly more lengthy set up and will take some review. 
+
+//////////////// reduce clutter with for...in and for...each /////////
