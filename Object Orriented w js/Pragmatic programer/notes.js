@@ -371,4 +371,34 @@ names.forEach(member => sendEmail(member));
 // or it can do anything that map filter and find can do. 
 // the reduce() method has a  slightly more lengthy set up and will take some review. 
 
-//////////////// reduce clutter with for...in and for...each /////////
+/////////////////////////// clean up parameters and return statements ///////////
+////
+// if a parameter is defined and it's not passed, the value is considered as "undefined". 
+// many times we don't want the value to be undefined because that is just a falsy value and it will mess up
+// calucations inside the function
+// instead we create default parameters with the equal sign.
+
+function convertWeight(weight, ounces = 0, roundTo = 2) {
+    const total = weight + (ounces/ 16);
+    const conversion = total / 2.2; 
+
+}
+
+// in this situation if ounces was undefined, the total varriable would be all screwed up. and we have to plan for other programers not knowing 
+// what to pass in if they don't need to use that parameter. this is also helpful because it works like typescript. other programers now know
+// that anything they pass in for ounces has to be an interger. 
+
+
+
+///////////// Destructuring with objects /////////
+// w/ tradional parameters you have to pass everything in order. 
+// w/ passing in a destructured object into a parameter you don't have to memorize the order and you can still acount for details that were.. 
+// unplanned for using the rest operator. { ...restoperator}
+/// this makes parameters more flexable. 
+//  pg 133
+// destructuring is a strong point of an object
+// you can also destructure arrays but as long as you assin the information in the same order as presented in the array.
+
+
+/////////// simplfy key value assignment /////////
+
