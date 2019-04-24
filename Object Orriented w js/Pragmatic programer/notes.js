@@ -400,5 +400,54 @@ function convertWeight(weight, ounces = 0, roundTo = 2) {
 // you can also destructure arrays but as long as you assin the information in the same order as presented in the array.
 
 
-/////////// simplfy key value assignment /////////
+////////////////////// functions  /////////////
+
+////////////// writing functions for testability /////////////
+// testing makes code easier to refactor and legacy code much easier to understand. results in much cleaner code.
+// the author says instead of writing tests for your current code , write code that is testable. 
+// testing frameworks : jasmine, mocha or jest
+// https://codeburst.io/how-to-test-javascript-with-mocha-the-basics-80132324752e
+
+////////////////// Arrow functions with special parameters //////////////////
+
+// if you're using special parameter actions like we discussed in the last chapter such as : ..
+// destructuring, rest parameters, and default parameters , you'll still need to include the parentheses in the arrow function. 
+
+const name = {
+    first: 'sydney',
+    last: 'jeffries'
+}
+
+function getName ({sydney, jeffries}) => '${first} ${last}'
+// here we stringified the first and last name with an arrow function by destructuring the object into the parameters
+
+
+//  when using destructuring inside an arrow function and returning an object, make sure to write the return object inside paratheses because
+// js can't tell if the curly braces are for function body. 
+
+
+////////////// Higher order functions //////////
+//  higher order funtion is a function that returns anther function
+// a higher order function is a function that needs to be called multiple times before it's fully resolved. 
+// you have atleast 2 rounds of parameters before the function is fully resolved
+// the parameters are independant of eachother. 
+// a partly applied funtion is created from a higher order function that you passed some of the parameters in, so you've reduced the total number of 
+// arguments needed for the function, but the completed function still needs more arguments. 
+// partly appplied functions are a feature of higher order functions that can be used to reduce repetition as long as the responsability of the first
+// set of parameters are predictable and the 2nd set required to complete the function flexuate more. 
+// to invoke both parts of the functions in a single call all you have to do is put parentheses one right after anther. it's invokes the outter
+// function then immmediately invokes the inner function. >> see below example
+const programInfo = mergeProgramInformation(building, manager)(program);
+
+///
+
+//////////////// Context //////////////
+// good general rule: scope pertains to functions and  context pertains to objects
+// we talk about the this keyword. the context controlls the meaning of the this keyword.
+//the this keyword is a large topic best covered by the 'you don't know JS' series. -- says the author. MADATORY READING
+// when you use a function inside a function the this keyword looses context from the object.
+// so arrow functions are great when you already have a context and what to use a function inside anther function
+// the book uses the example of an object's method containing the  map method and the call back function of that map method.
+
+
 
