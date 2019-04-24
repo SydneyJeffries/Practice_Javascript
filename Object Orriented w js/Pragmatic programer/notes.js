@@ -400,9 +400,9 @@ function convertWeight(weight, ounces = 0, roundTo = 2) {
 // you can also destructure arrays but as long as you assin the information in the same order as presented in the array.
 
 
-////////////////////// functions  /////////////
-
-////////////// writing functions for testability /////////////
+/////////////////////////////////////// functions chapter 7  //////////////
+//
+///////// writing functions for testability ///////
 // testing makes code easier to refactor and legacy code much easier to understand. results in much cleaner code.
 // the author says instead of writing tests for your current code , write code that is testable. 
 // testing frameworks : jasmine, mocha or jest
@@ -411,19 +411,24 @@ function convertWeight(weight, ounces = 0, roundTo = 2) {
 ////////////////// Arrow functions with special parameters //////////////////
 
 // if you're using special parameter actions like we discussed in the last chapter such as : ..
-// destructuring, rest parameters, and default parameters , you'll still need to include the parentheses in the arrow function. 
+// destructuring, rest parameters, and default parameters , then you'll still need to include the parentheses in the arrow function. 
 
 const name = {
     first: 'sydney',
     last: 'jeffries'
 }
 
-function getName ({sydney, jeffries}) => '${first} ${last}'
+function getName ({first, last}) => '${first} ${last}'
+// returns 'sydney jeffries' 
 // here we stringified the first and last name with an arrow function by destructuring the object into the parameters
 
 
 //  when using destructuring inside an arrow function and returning an object, make sure to write the return object inside paratheses because
 // js can't tell if the curly braces are for function body. 
+
+function getNameObject ({first, last}) => ({ fullname: '${first} ${last}'})
+getNameObject(name); 
+// returns {fullname: 'sydney Jeffries'}
 
 
 ////////////// Higher order functions //////////
@@ -446,8 +451,70 @@ const programInfo = mergeProgramInformation(building, manager)(program);
 // we talk about the this keyword. the context controlls the meaning of the this keyword.
 //the this keyword is a large topic best covered by the 'you don't know JS' series. -- says the author. MADATORY READING
 // when you use a function inside a function the this keyword looses context from the object.
-// so arrow functions are great when you already have a context and what to use a function inside anther function
+// so arrow functions are great when you already have a context and want to use a function inside anther function and keep the this binded to the previous
+// context
+// but they are problematic when you need to set a new this binding.
 // the book uses the example of an object's method containing the  map method and the call back function of that map method.
 
+// if you defined a property of an object with an arrow function, the this binding will go to global scope, and i highly doubt there would
+/// be anytime you'd want that to happen... so don't do that. 
 
+
+////////////////////////////////////           Chapter 8: Classes   //////////////////
+// the class syntax ends up confusing programers from other object langauges because the class syntax is just sugar. js is still, regardless of it's 
+// new syntax sugar, a prototype language... and the new snytax confuses devs into thinking it's instead a class langauge. this creates suprises 
+// when these people don't understand thaat it's still a prototype langauge.
+// 
+
+class Coupon {   // declaring a class with the class keyword
+constructor (price, experation){
+    this.price = price;
+    this.experation = experation || 'two weeks';
+}
+
+getPriceText() {
+ return '$ ${this.price}'
+ }
+
+}
+
+}
+
+const coupon = new Coupon(5); // creating an instance of that class with the new keyword
+coupon.price // returns 5
+coupon.experation // returns the default value 'two weeks'
+coupon.getPriceText() // returns '$ 5' 
+
+
+/////////////////// Sharing methods between classes using inheritance ///////////
+// inheritance bloats code because in the background a loop runs to check the object's properties and then the object's prototype for that property
+// this background loop can slow things down. 
+// thus, use inheritance with caution. check out other ways to share methods taht don't require inheritance. a popular techinque called Compesition is out
+// (but, these notes are not about compesition. regardless tho, you should still check it out.)
+//
+// 
+// creating class that will inherit from the other class 
+
+class flashCoupon extends coupon {                                          // use the extends keyword
+    constructor(price, expiration){
+        super(price);                                      // the super keyword extends a property the parent class, and you pass it the same
+                                                          // parameter as you would've passed the parent
+        this.expiration = expiration || 'two hours';          // this was a property we over-road from the parent by giving it the same name as the parent
+    }                                                          // but then giving it a new value and this works b/c prototype chain
+
+
+    isRewardsEligible(user) {
+        return super.isRewardsEligible(user) && this.price > 20 ;     // polymorphism: the child object can use the parent's method and 
+    }                                                                  // add some of it's own implimentation to it. 
+}
+
+///////////////// simplify interfaces with get and set //////////
+// i marked up the book on page 191 instead of typing here for some reason.
+//  but basically because private properties don't exist in js yet we have to use setters as a work around.
+// i'm not sure what private properties are like in other langues but it doesn't matter
+// in JS if you didn't want a property to be updated by other developers you would use the "_namingConvention". it would cause pause for the developers
+// setters don't prevent the propery from updating either unless you create that setter function to do so. 
+// you can create a setter function to to do anything... but to keep the nature of a setter in character use setter functions to vailditate the
+// data that's being set for an example.. checking to make sure that the data type you're updating the property with is of the intended data type. 
+// 
 
