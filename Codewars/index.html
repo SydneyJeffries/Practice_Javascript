@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        
+        function persistence(num) {
+   const string = num.toString();
+   const firstnum = string.slice(1,2);
+   const secnum = string.slice(2,3);
+    const num1 = Number(firstnum); 
+    const num2 = Number(secnum);
+  if (num1 * num2 >= 0 && num1 * num2 < 10){
+  console.log( '{$num1} + {$num2}')
+  }
+  else{
+   return num = num1 * num2
+   console.log(num);
+  }
+  
+  }
+
+  persistence(39);
+
+ 
+
+        </script>
+</body>
+</html>
