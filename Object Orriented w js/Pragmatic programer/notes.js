@@ -460,7 +460,7 @@ const programInfo = mergeProgramInformation(building, manager)(program);
 /// be anytime you'd want that to happen... so don't do that. 
 
 
-////////////////////////////////////           Chapter 8: Classes   //////////////////
+///////////////////////////////////////           Chapter 8: Classes   //////////////////
 // the class syntax ends up confusing programers from other object langauges because the class syntax is just sugar. js is still, regardless of it's 
 // new syntax sugar, a prototype language... and the new snytax confuses devs into thinking it's instead a class langauge. this creates suprises 
 // when these people don't understand thaat it's still a prototype langauge.
@@ -518,3 +518,42 @@ class flashCoupon extends coupon {                                          // u
 // data that's being set for an example.. checking to make sure that the data type you're updating the property with is of the intended data type. 
 // 
 
+////////////// Generator functions //////
+// generator functions are kind of like higher order functions in that you can acess the function one piece at a time... it's useful if you have 
+// information that you want to acess in parts. and like a higher order function you can the parts in different places. 
+
+
+function* getCairoTrilogy() {
+    yeild 'place walk';
+    yeild 'place of desire';
+    yeild 'sugar street';
+}
+const trilogy = getCarioTrilogy()
+trilogy.next();
+//{value: 'place walk', done: false}        // the done property describes in boolean w/o not the function has given up all it's data yet. 
+triology.next();
+//{value: 'place walk, done: false} 
+
+// people are mainly using them b/c they make objects and more complex data types into iteratables. 
+// objects inside of objects that are inside of objects that all contain the same key pairs is a data struture type known as: tree data structure
+// whebn doing strange data structure types like these, it's great to use generators because you won't have trouble iterating over 
+// all of the key value pairs. 
+
+
+////////// the while loop ////////////
+// while vrs for loop. 
+//with a while loop we don't have an exact idea how many times it will loop.
+// a for loop's incrementing varriable is contained in side of it.
+// with the while loop, the varriable is outside the loop.
+// both loops run untill the condition becomes true...
+// you risk plugging in something that's already true with the while loop b.c with the while loop, we are using it
+// because we don't know the exact number of iterations... if we don't know that, there is also a good chance we don't know if it's already true!
+// 
+
+///////////// Bind() solves "this" errors /////
+// earilier we learned how functions create new context and leave unpredictable results. we learned how to use an arrow function 
+// to perserve the context of this.
+// this keyword is binded to the object of which it was called. 
+// never use an arrow function as a method inside the constructor function...
+// and if you use the this keyword inside of setTimeOut methods, you might be suprised that the "this" is binded to the window object, 
+// the object of which the method belongs to. 
