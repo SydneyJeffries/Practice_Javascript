@@ -557,3 +557,14 @@ triology.next();
 // never use an arrow function as a method inside the constructor function...
 // and if you use the this keyword inside of setTimeOut methods, you might be suprised that the "this" is binded to the window object, 
 // the object of which the method belongs to. 
+// if you're encountering unexpected results with the this keyword, try looking into binding the this keyword. 
+// with the bind method you'll be able to control what the this keyword is binded too..
+
+
+/////////////////// Acess External Data with Fetch() and promises //////////////////
+
+///////// retrieve data asynchronously with promises ///
+
+// javascript is an asynchronous language with the implimentation of setTimeOut and api's such as the fetch() and ajax. 
+//if a language wasn't asynchronous event listeners would have to wait for an ajax to complete, before they can fire off. 
+/
