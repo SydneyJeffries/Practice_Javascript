@@ -587,4 +587,70 @@ function getUserPreferences() {
 getUserPreferences()
 .then(preference=> failMusic(preference.theme))      // this parameter "preference" value comes from the resolve theme: dusk
 .then(music => getArtist(music.Album))  // the music paramter is what's returned from the last then method.
-.catch(e => console.log(e) });  // the parameter is what's returned from the reject method. 
+.catch(e => console.log(e) );  // the parameter is what's returned from the reject method. 
+
+
+/////////  using fetch () to make calls to an API 
+
+//http:://jasonplaceholder.typicode.com/ 
+// website for mock blog data.  their tool JASON server allows me to mock api's locally. 
+// fetch is called with the endpoint url as the argument.
+fetch('http:://jasonplaceholder.typicode.com/ ') 
+.then(data => { 
+    if (!data.ok){
+        throw Error (data.status)
+    }
+    return data.jason
+})
+.then(post => {
+    console.log(post.title);
+})
+.catch(e => {
+    console.log(e)
+})
+// in the fetch api the ok property will return true as long as an error code doesn't exist. 
+// this okay property is a go around because the promise object's catch method is not reliable when dealing with fetches.
+
+// if you're going to send data back; aka post method , then you'll have to supply the object config as the 2nd parameter. 
+
+const options = {         // here we make our config object. the list of attributes is exhaustive on mozilla website. 
+    method: 'POST',         // the ones we don't specifiy will take default value. 
+    headers: {
+        'content-type': 'application/json'
+    },
+    body: JSON.stringify(update),
+}, 
+
+fetch('http:://jasonplaceholder.typicode.com/posts ' , options)  // <-- we threw in the object in the fetch's 2nd parameter
+.then(data => { 
+    if (!data.ok){
+        throw Error (data.status)
+    }
+    return data.jason
+})
+.then(post => {
+    console.log(post.title);
+})
+.catch(e => {
+    console.log(e)
+})
+
+
+
+/////////////// maintain state with local state /////////////
+/// enter the localStorage object.
+// when you store data locally you're preserving information on a particular bowser on a particular device.
+// the localStorage object has methods: setItem , removeItem, deleteItem , clear
+// the local storage object saves information as key value pairs. the information must be a string. 
+// so if you wanted to store a datastructure of information, you'd have to convert it into a string first. the book uses JASON.stringify to convert either
+// an object or an array into a string that get's stored in the local object, and JASON.parse to convert it back into the data type whenever that information
+// comes back out and needs to be in the orginal data type format. 
+// to remove all the key value pairs stored in the jason you can use the .clear method and it returns a "clean slate".
+
+
+
+
+/// the sessionStorage object is alot like the local storage object, but it automaticly cleans out once the user closes the tab. 
+// vrs. local storrage, it will only clean on that devise, on that browser when we code it to. 
+
+
