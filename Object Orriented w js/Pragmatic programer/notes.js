@@ -565,6 +565,26 @@ triology.next();
 
 ///////// retrieve data asynchronously with promises ///
 
-// javascript is an asynchronous language with the implimentation of setTimeOut and api's such as the fetch() and ajax. 
+// javascript is an asynchronous language with the implimentation of setTimeOut and api's such as the fetch(), promises, and ajax. 
 //if a language wasn't asynchronous event listeners would have to wait for an ajax to complete, before they can fire off. 
-/
+// used to call backs would be nested in parameters, and the call back would take anther call back, so the parameters would be 3 deep.
+// with promises we can chain methods and it looks alot neater then it did. 
+// promise is an action that takes an asynchro action and if the action fails, the catch method is called and if it works the then() method is called.
+// promises are usually excuded along side of the xhr object or html 5 api.
+//
+function getUserPreferences() {
+    const preferences = new Promise((resolve, reject) => {
+        resolve({
+            theme: 'dusk'
+        });
+        reject({
+            type: 'Access Denied'
+        })
+    });
+    return preferences 
+};
+
+getUserPreferences()
+.then(preference=> failMusic(preference.theme))      // this parameter "preference" value comes from the resolve theme: dusk
+.then(music => getArtist(music.Album))  // the music paramter is what's returned from the last then method.
+.catch(e => console.log(e) });  // the parameter is what's returned from the reject method. 
