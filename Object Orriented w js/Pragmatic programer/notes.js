@@ -652,5 +652,37 @@ fetch('http:://jasonplaceholder.typicode.com/posts ' , options)  // <-- we threw
 
 /// the sessionStorage object is alot like the local storage object, but it automaticly cleans out once the user closes the tab. 
 // vrs. local storrage, it will only clean on that devise, on that browser when we code it to. 
+// in local storage i can store objects 
+
+/////////////////////////// chapter 10 //////////////
+// organizing code and making it extendable, reuseable and managemable is called the architecture for the code. 
+// code architecture 
+// this chapter will teach code architecture in file management, npm, componet architecture pattern
+
+///////////////// isolating functionality with import and export //////////
+// by not exporting some functions youre essentailly making private functions out of some. 
+//  to export functions from your file
+export { nameOfFunction, nameOfFunction2 };
+// to import: 
+import { nameOfFunction, nameOfFunction2 } from '.util';
+
+// you can export varriables and classes with the same syntax. 
+// and to use them after they are imported 
+// and you don't have to import all the ones that you exported from that file. 
+
+import { capitalize } from '.util';
+function greet(name) {
+    return 'hello, {$capitalize(name)}!'     ///here we used a template literal 
+}
+
+// if you want to import all the aviabale functions you can.. and you'd assin them to an object name and call them like methods that belong
+// to this object that you just made up at the import phase. 
+// follow the astrick snytax: 
+import * as utils from './util';
+
+export function greet(name) {
+    return 'hello, ${utils.capitalize(name)}'
+}
 
 
+// or you can type the export keyword before the function decloration and that does the same thing as export { greet }
