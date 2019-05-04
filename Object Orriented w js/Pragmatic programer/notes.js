@@ -686,3 +686,23 @@ export function greet(name) {
 
 
 // or you can type the export keyword before the function decloration and that does the same thing as export { greet }
+// splitting code into different files helps keep things organized and logicalily. we will learn more about building applications with compnent archeiture. 
+
+
+///////////////// NPM   /////////
+// the book talks about a package called lodash - a suite of tools for converting data. they use the example of quickly converting a map to an object. 
+// npm doesn't approve of the code in it's database- however it will remove the code. youre responsable for any malicous code that maybe in your report.
+// check the codebase- good general rule is ifthe code doesn't have a commit in the last 6 months- move on from this abandoned piece of code.
+// code that won't be apart of the production product is installed as a dependancy :
+npm install --save-dev prettier 
+// write the script for the local file. 
+///
+//
+//
+//
+// start by climing to your program directory, npm init 
+//  that installs the package.json
+// after npm init do the install : npm install --save prettier -dev //// ( the dev is optional)
+// then a package-lock.json appears and stuff will be automaticlly installed into your package.jason
+// the package-lock is a run down about the dependancies that the package has. don't touch it. don't worry about it
+// if you want to run a script then add it into the package.jason NOT the package.lock !
