@@ -706,3 +706,32 @@ npm install --save-dev prettier
 // then a package-lock.json appears and stuff will be automaticlly installed into your package.jason
 // the package-lock is a run down about the dependancies that the package has. don't touch it. don't worry about it
 // if you want to run a script then add it into the package.jason NOT the package.lock !
+
+///////// component architecture //////
+// instead of spreading files out by type of file such as putting the css files in the css directory and onward... developers of web apps are seperating
+// files by component. for instance, the nav bar would get it's own file... and the button would have it's own file. 
+// however, this archeitecture is dependant on build toools such as the ones supplied in frameworks as React. 
+// this cool piece of code is gonna update the copyright year so that we never have to mannually change it .
+
+
+import react from 'react';
+import '.copyright.css';    // we imported the css file into the javascript. in this case, the react build tools will know how to handle this 
+
+export default function CopyRightStatement() {
+    const year = new Date().getFullYear(); 
+    return (
+        <div className="copyright">
+        copyRight {year}
+        </div>
+    );
+}
+
+// the method of the madness is to have a componets directory, and inside this directory, a directory for each component.
+ //the css and the js and the html each have it's own file in this directory. 
+// it's cool because the whole componet is easily re-usable because the styles are right there! you don't need to go find the CSS in a large dump of..
+// a css file. 
+
+// the book makes an example of a button. the book illustrates inorder to make that button
+// re-usable across projects, make a component out of the event listener because the event listener will be unique
+// per project but the button and maybe the button's style can be stolen a reused in anther one of your projects. 
+// making the serpartion between the two will allow for easy copy and paste of the button componet across projects. 
