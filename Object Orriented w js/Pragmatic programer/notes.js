@@ -748,8 +748,66 @@ export default function CopyRightStatement() {
 //  code will tell you that there is a reference error. 
 
 // to fix this: install the babel-loader from webpack. babel loader will get the imports from the js files. 
-// but babel loader will not fix the css imports and exprots.. .you need to install css-loader and sstyle-loader for that. 
+// but babel loader will not fix the css imports and exprots...
+//you need to install css-loader and style-loader for that. 
 // 
 
 
-/////////// CSS animations and Javascript ////////////
+///////// Destructuring assignment: destructuring assignment with objects  ///////
+// destructuring can be done on objects and arrays. 
+// when youre destructuring an object, youre actually creating a varribale out of a key.value pair. so, instead of calling with object dot notation, 
+// you'd call it more like a varriable and the name of the varriable must match the relevent key name. 
+
+const landscape = {
+    photographer: 'sydney'
+}
+
+const { photographer } = landscape // declare the destructured assignment and put the name in {}. the {} signifies you're destructuring an object's key
+// to be a varriable.
+photographer // returns 'sydney'
+
+// you can destructure more then one varriable at once
+
+// you can destructure as many keys from the object as you'd like at once. 
+const landscape = {
+    photographer: 'sydney',
+    year: 2019,
+    month: "may",
+}
+
+const { photographer , year  } = lanscape    // what happens if you don't include one of the keys? nothing, anther developer might expect all of them
+// to be destructured, so this might be annoing for them.
+// but if you don't know all the keys and you don't mind creating an object out of all the missing key/values then do this: 
+
+const landscape = {
+    photographer: 'sydney',
+    equiptment: 'cannon',
+    format: digital, 
+};
+
+const { photographer ...additional } = landscape;     /// by using the spread operator we are able to create varriables for everything even if offhand - we don't
+// know the names of the keys in the object. also, the name you choose following the rest operator is the name you will use to call upon all of the 
+// remaining information
+
+additional // returns {equiptment: 'cannon' , format: 'didgital' }
+
+// pretend you have a bunch of picture objects and some picture objects contain more information then others.. 
+// and you don't know which picture objects contain missing information
+// but you want to be prepared for the objects that contain missing information
+//so when creating varriables by destructured assignment, you're going to create deafault values of all the keys because you don't even know..
+// if the object you're working with is one of the objects with the missing information.
+
+
+// you can destructure an object and prepare for the situation when the object doesn't have that key/value by entering in deafults
+
+const landscape2 {
+
+}   // an object with missing keys
+
+const { photographer = 'anonymous', title} = lanscape2;
+photographer 
+//anonymous
+title 
+// undefined
+
+////////////// destructuring assignment with arrays /////////////
