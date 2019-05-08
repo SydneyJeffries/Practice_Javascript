@@ -706,8 +706,8 @@ npm install --save-dev prettier
 // then a package-lock.json appears and stuff will be automaticlly installed into your package.jason
 // the package-lock is a run down about the dependancies that the package has. don't touch it. don't worry about it
 // if you want to run a script then add it into the package.jason NOT the package.lock !
-
-///////// component architecture //////
+///
+////////////////////// component architecture ///////////////
 // instead of spreading files out by type of file such as putting the css files in the css directory and onward... developers of web apps are seperating
 // files by component. for instance, the nav bar would get it's own file... and the button would have it's own file. 
 // however, this archeitecture is dependant on build toools such as the ones supplied in frameworks as React. 
@@ -735,3 +735,21 @@ export default function CopyRightStatement() {
 // re-usable across projects, make a component out of the event listener because the event listener will be unique
 // per project but the button and maybe the button's style can be stolen a reused in anther one of your projects. 
 // making the serpartion between the two will allow for easy copy and paste of the button componet across projects. 
+// on the button that they're strving to make reuseable, there is an image on that button.. they set the image path name to it's own component, and the
+/// message on the button also has it's own componet. 
+// so one button commonet has 3 componets split out, because each component will change across projects. 
+// when you start creating the page, you import the componet's directory into the page.
+
+
+
+////////////// the book talks about webpack and babel 
+// babel is your god send for writing all browser friendly javascript code. when  babel converts your es6 code to es5 code it doesn't have a conversion
+// for es6 features such as import and export... so unless you handle that with webpack, your import export will not work and your finalized babel
+//  code will tell you that there is a reference error. 
+
+// to fix this: install the babel-loader from webpack. babel loader will get the imports from the js files. 
+// but babel loader will not fix the css imports and exprots.. .you need to install css-loader and sstyle-loader for that. 
+// 
+
+
+/////////// CSS animations and Javascript ////////////
