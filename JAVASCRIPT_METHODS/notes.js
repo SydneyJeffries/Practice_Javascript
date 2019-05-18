@@ -1,4 +1,4 @@
-I created flashcards and sorted my array methods by what they do and what they return
+//I created flashcards and sorted my array methods by what they do and what they return
 
 ///////// these methods return booleans: 
 
@@ -18,12 +18,13 @@ includes();
 
 //////////////// these methods proform functions on each element of the array:
 
-Map(); 
+map(); 
 // map runs a function for each element of the array and returns a new array. 
 // it's recomded to use arrow functions inside the map method to display clear intentions to other developers,
 // unless the function is super long then it doesn't look as clean as some of the other ways to write a function.
 forEach();
 // forEach is recomended for proforming an action on the memebers of the array, because it does mutate the orignal array.
+reduce();
 
 
 //////////////// these methods return a string from an array: 
@@ -44,7 +45,7 @@ indexOf();
 
 findIndex();
 // indexOf and findIndex: these both loop and return the index value of the first match.  
-// findIndex() takes a function and indexOF() does not. 
+// findIndex() takes a function and indexOf() does not. 
 
 
 // All of these methods return -1 if the value isn't found
